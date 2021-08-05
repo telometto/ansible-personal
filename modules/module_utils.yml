@@ -1,0 +1,15 @@
+- name: "INSTALLING UTILITIES"
+  dnf:
+    state: latest
+    name:
+      - cmake
+      - cronie
+      - dnf-utils
+      - gnome-tweaks
+      - gparted
+      - htop
+      - lm_sensors
+      - micro
+      - openssl
+      - variety
+      - xclip
