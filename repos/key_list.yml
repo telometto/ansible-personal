@@ -6,6 +6,6 @@ rpm_fusion:
 #protonmail:
 #  - "https://protonmail.com/download/bridge_pubkey.gpg"
 #microsoft:
-  - "https://packages.microsoft.com/keys/microsoft.asc"
+#  - "https://packages.microsoft.com/keys/microsoft.asc"
 #oracle:
-  - "https://www.virtualbox.org/download/oracle_vbox.asc"
+#  - "https://www.virtualbox.org/download/oracle_vbox.asc"
