@@ -3,3 +3,5 @@
     state: directory
     path: /home/zeno/Documents/from_git
     recurse: yes
+    owner: zeno
+    group: zeno
