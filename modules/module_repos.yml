@@ -46,6 +46,12 @@
     host: copr.fedorainfracloud.org
     name: dawid/better_fonts
 
+- name: "Enabling copr: hack-fonts"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: zawertun/hack-fonts
+
 - name: "Updating cache"
   dnf:
     update_cache: yes
