@@ -10,6 +10,8 @@
       - htop
       - lm_sensors
       - micro
+      - neofetch
       - openssl
+      - rpm-cron
       - variety
       - xclip
