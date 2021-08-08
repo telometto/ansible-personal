@@ -9,3 +9,5 @@ rpm_fusion:
 #  - "https://packages.microsoft.com/keys/microsoft.asc"
 #oracle:
 #  - "https://www.virtualbox.org/download/oracle_vbox.asc"
+#protonvpn:
+  - "https://protonvpn.com/download/public_key.asc"
