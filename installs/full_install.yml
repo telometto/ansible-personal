@@ -31,8 +31,8 @@
     - name: "Calling fonts module"
       include_tasks: /home/zeno/Documents/github/ansible/modules/module_fonts.yml
 
-    #- name: "Calling ProtonVPN module"
-    #  include_tasks: /home/zeno/Documents/github/ansible/modules/module_protonvpn.yml
+    - name: "Calling ProtonVPN module"
+      include_tasks: /home/zeno/Documents/github/ansible/modules/module_protonvpn.yml
 
     - name: "Calling PIP module"
       include_tasks: /home/zeno/Documents/github/ansible/modules/module_pip.yml
