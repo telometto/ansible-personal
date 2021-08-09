@@ -10,7 +10,7 @@
       - com.obsproject.Studio
       - com.spotify.Client
       - com.teamspeak.TeamSpeak
-      - com.visualstudio.code
+      #- com.visualstudio.code
       - de.haeckerfelix.Shortwave
       - eu.scarpetta.PDFMixTool
       - im.riot.Riot
