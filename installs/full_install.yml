@@ -34,6 +34,9 @@
     - name: "Calling ProtonVPN module"
       include_tasks: /home/zeno/Documents/github/ansible/modules/module_protonvpn.yml
 
+    - name: "Calling VisualStudio Code module"
+      include_tasks: /home/zeno/Documents/github/ansible/modules/module_vscode.yml
+
     - name: "Calling PIP module"
       include_tasks: /home/zeno/Documents/github/ansible/modules/module_pip.yml
 
