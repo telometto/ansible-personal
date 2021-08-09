@@ -1,4 +1,4 @@
-- name: "Installing (gaming) launchers and utilities"
+- name: "INSTALLING LAUNCHERS AND UTILITIES (GAMING)"
   dnf:
     state: latest
     name:
