@@ -3,42 +3,42 @@
   become: true
   pre_tasks:
     - name: "Calling system update module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_sys_update.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_sys_update.yml
 
 - hosts: localhost
   become: true
   vars_files:
-    - /home/zeno/Documents/github/ansible/repos/key_list.yml
+    - /home/zeno/Documents/github/ansible/desktops/repos/key_list.yml
   tasks:
     - name: "Calling repo module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_repos.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_repos.yml
 
     - name: "Calling utlities module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_utils.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_utils.yml
 
     - name: "Calling gaming module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_gaming.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_gaming.yml
 
     - name: "Calling Proton-GE module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_proton-ge.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_proton-ge.yml
 
     - name: "Calling GitHub module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_github.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_github.yml
 
     - name: "Calling lang packs module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_lang_packs.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_lang_packs.yml
 
     - name: "Calling fonts module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_fonts.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_fonts.yml
 
     - name: "Calling ProtonVPN module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_protonvpn.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_protonvpn.yml
 
     - name: "Calling VisualStudio Code module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_vscode.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_vscode.yml
 
     - name: "Calling PIP module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_pip.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_pip.yml
 
     - name: "Calling Flatpak module"
-      include_tasks: /home/zeno/Documents/github/ansible/modules/module_flatpaks.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_flatpaks.yml
