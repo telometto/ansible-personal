@@ -1,0 +1,9 @@
+- name: "INSTALLING FONTS"
+  dnf:
+    state: latest
+    name:
+      - google-arimo-fonts
+      - google-droid-fonts-all
+      - google-noto-sans-runic-fonts
+      - google-roboto-fonts
+      - google-rubik-fonts

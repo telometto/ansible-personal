@@ -1,0 +1,7 @@
+- name: "INSTALLING LAUNCHERS AND UTILITIES (GAMING)"
+  dnf:
+    state: latest
+    name:
+      - goverlay
+      - lutris
+      - steam

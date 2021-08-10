@@ -1,0 +1,18 @@
+- name: "Installing libvibrant required repos"
+  dnf:
+    state: latest
+    name:
+      - cmake
+      - make
+      - libX11
+      - libX11-devel
+      - libXrandr
+      - libXrandr-devel.i686
+      - libXrandr-devel.x86_64
+      - libXNVCtrl
+      - libXNVCtrl-devel
+
+- name: "Cloning GitLab repo: libvibrant"
+  ansible.builtin.git:
+    repo: 'https://gitlab.com/vibrance/libvibrant-legacy.git'
+    dest: /home/zeno/Documents/from_git/libvibrant
