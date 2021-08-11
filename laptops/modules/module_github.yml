@@ -1,5 +1,5 @@
 - include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_mkdir.yml
 - include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_blesh.yml
-#- include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_libvibrant.yml
-#- include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_vibrantlinux.yml
+#- include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_<INSERT_MODULE>.yml
+#- include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_<INSERT_MODULE>.yml
 - include_tasks: /home/zeno/Documents/github/ansible/modules/git_submodule_chmod.yml
