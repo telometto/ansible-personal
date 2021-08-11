@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: "Check if dir exists"
+      stat:
+        path: /home/zeno/Documents/from_git/libvibrant
+      register: dir_data
+
+    - name: "Report if dir exists"
+      debug:
+        msg: "Dir exists"
+      when: dir_data.stat.exists
+
+    - name: "Cloning GitLab repo: libvibrant"
+      ansible.builtin.git:
+        repo: 'https://gitlab.com/vibrance/libvibrant-legacy.git'
+        dest: /home/zeno/Documents/from_git/libvibrant
+      when: dir_data.stat.exists == False
