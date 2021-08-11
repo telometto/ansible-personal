@@ -8,7 +8,7 @@
 - hosts: localhost
   become: true
   vars_files:
-    - /home/zeno/Documents/github/ansible/desktops/repos/key_list.yml
+    - /home/zeno/Documents/github/ansible/vars/key_list.yml
   tasks:
     - name: "Calling repo module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_repos.yml
