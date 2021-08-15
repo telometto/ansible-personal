@@ -3,7 +3,7 @@ rpm_fusion:
   - "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
 
 #brave:
-#  - "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
+  - "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
 
 #protonmail:
 #  - "https://protonmail.com/download/bridge_pubkey.gpg"
