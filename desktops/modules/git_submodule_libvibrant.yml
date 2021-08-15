@@ -12,7 +12,19 @@
       - libXNVCtrl
       - libXNVCtrl-devel
 
+- name: "Checking if dir exists"
+  ansible.builtin.stat:
+    path: /home/zeno/Documents/from_git/libvibrant
+    get_checksum: no
+  register: p
+
+- name: "Reporting if dir exists"
+  ansible.builtin.debug:
+    msg: "Path exists and is a directory"
+  when: p.stat.isdir is defined and p.stat.isdir
+
 - name: "Cloning GitLab repo: libvibrant"
   ansible.builtin.git:
     repo: 'https://gitlab.com/vibrance/libvibrant-legacy.git'
     dest: /home/zeno/Documents/from_git/libvibrant
+  when: p.stat.exists == False
