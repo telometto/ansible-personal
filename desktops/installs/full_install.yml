@@ -19,9 +19,6 @@
     - name: "Calling gaming module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_gaming.yml
 
-    - name: "Calling Proton-GE module"
-      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_proton-ge.yml
-
     - name: "Calling GitHub module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_github.yml
 
@@ -36,6 +33,9 @@
 
     - name: "Calling VisualStudio Code module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_vscode.yml
+
+    - name: "Calling Brave browser module"
+      include_tasks: home/zeno/Documents/github/ansible/desktops/modules/module_brave.yml
 
     - name: "Calling PIP module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_pip.yml
