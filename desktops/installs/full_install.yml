@@ -35,7 +35,7 @@
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_vscode.yml
 
     - name: "Calling Brave browser module"
-      include_tasks: home/zeno/Documents/github/ansible/desktops/modules/module_brave.yml
+      include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_brave.yml
 
     - name: "Calling PIP module"
       include_tasks: /home/zeno/Documents/github/ansible/desktops/modules/module_pip.yml
