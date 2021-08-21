@@ -1,0 +1,23 @@
+- name: "Installing flatpaks"
+  community.general.flatpak:
+    state: present
+    method: system
+    name:
+      - ch.protonmail.protonmail-bridge
+      - com.bitwarden.desktop
+      - com.discordapp.Discord
+      - com.github.wwmm.pulseeffects
+      - com.obsproject.Studio
+      - com.spotify.Client
+      - com.teamspeak.TeamSpeak
+      #- com.visualstudio.code
+      - de.haeckerfelix.Shortwave
+      - eu.scarpetta.PDFMixTool
+      - im.riot.Riot
+      - io.mpv.Mpv
+      - org.gnome.Evolution
+      - org.gnome.Extensions
+      - org.mozilla.Thunderbird
+      - org.onlyoffice.desktopeditors
+      - org.telegram.desktop
+      - us.zoom.Zoom

@@ -1,0 +1,47 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: "Enable repos"
+      tags: fedora,repos,all
+      include_tasks: repos
+    
+    - name: "Installing utils"
+      tags: utils,all
+      include_tasks: utils
+    
+    - name: "Installing gaming"
+      tags: gaming
+      include_tasks: gaming
+    
+    - name: "Download GitHub repos"
+      tags: github
+      include_tasks: github
+    
+    - name: "Installing language packs"
+      tags: langs,all
+      include_tasks: langs
+    
+    - name: "Installing fonts"
+      tags: fonts,all
+      include_tasks: fonts
+    
+    - name: "Installing ProtonVPN"
+      tags: pvpn
+      include_tasks: pvpn
+    
+    - name: "Installing Visual Studio Code"
+      tags: vscode,all
+      include_tasks: vscode
+    
+    - name: "Installing Brave browser"
+      tags: brave,all
+      include_tasks: brave
+    
+    - name: "Installing PIP packages"
+      tags: pip,all
+      include_tasks: pip
+    
+    - name: "Installing Flatpaks"
+      tags: flatpak
+      include_tasks: flatpak

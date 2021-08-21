@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: true
+  roles:
+    - base
+
+- hosts: localhost
+  become: true
+  roles:
+    - desktops
+
+#- hosts: localhost
+#  become: true
+#  roles:
+#    - laptops
