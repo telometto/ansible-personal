@@ -1,0 +1,8 @@
+- name: "Installing lang packs"
+  dnf:
+    state: latest
+    name:
+      - langpacks-it
+      - langpacks-nb
+      - libreoffice-langpack-it
+      - libreoffice-langpack-nb

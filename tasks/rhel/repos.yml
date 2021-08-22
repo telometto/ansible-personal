@@ -1,0 +1,69 @@
+### Security keys
+- name: "Importing RPM security keys"
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ item }}"
+  loop: "{{ key_list }}"
+
+- name: "Installing security keys from official repos"
+  dnf:
+    state: latest
+    name:
+      - distribution-gpg-keys
+      - distribution-gpg-keys-copr
+
+### Third-party repos
+# Official
+- name: "Installing third-party repos"
+  dnf:
+    state: latest
+    name: fedora-workstation-repositories
+
+# RPM Fusion
+- name: "Enabling RPM (free) repo"
+  dnf:
+    state: latest
+    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+  when: ansible_distribution == 'Fedora' and ansible_distribution_major_version|int == 34
+
+- name: "Enabling RPM (non-free) repo"
+  dnf:
+    state: latest
+    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+  when: ansible_distribution == 'Fedora' and ansible_distribution_major_version|int == 34
+
+# Flathub
+- name: "Enabling the flathub repo"
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
+
+# Copr
+- name: "Enabling copr: scrcpy"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: zeno/scrcpy
+
+- name: "Enabling copr: better_fonts"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: dawid/better_fonts
+
+- name: "Enabling copr: hack-fonts"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: zawertun/hack-fonts
+
+- name: "Enabling copr: gdm-wallpaper"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: zirix/gdm-wallpaper
+
+- name: "Updating cache"
+  dnf:
+    update_cache: yes

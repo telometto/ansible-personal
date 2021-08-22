@@ -1,0 +1,22 @@
+- name: "Removing old Docker installations"
+  dnf:
+    state: absent
+    name: docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+
+- name: "Installing dnf-plugins-core (required)"
+  dnf:
+    state: latest
+    name:
+      - dnf-plugins-core
+
+- name: "Adding Docker repo"
+  ansible.builtin.command:
+    cmd: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+- name: "Installing Docker"
+  dnf:
+    state: latest
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
