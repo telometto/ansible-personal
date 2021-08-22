@@ -3,16 +3,16 @@
 - hosts: localhost
   become: true
   roles:
-    - roles/base/main.yml
+    - roles/base
 
 - hosts: localhost
   become: true
   vars_files:
     - vars/main.yml
   roles:
-    - roles/desktops/main.yml
+    - roles/desktops
 
 #- hosts: localhost
 #  become: true
 #  roles:
-#    - roles/laptops/main.yml
+#    - roles/laptops
