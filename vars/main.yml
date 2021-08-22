@@ -2,7 +2,7 @@
 # vars file for ansible
 
 ### Distribution based
-# RHEL-based systems
+# RHEL-based systems (dnf & yum)
 yum_name: "*"
 yum_state:  latest
 yum_enablerepo: "rhel-?-server-rpms,rhel-?-server-satellite-tools-6.?-rpms"
@@ -14,21 +14,21 @@ dnf_enablerepo: "rhel-8-for-x86_64-appstream-rpms,rhel-8-for-x86_64-baseos-rpms,
 dnf_disablerepo: "*"
 dnf_exclude: ""
 
-# SUSE-based systems
+# SUSE-based systems (zypper)
 zypper_name: "*"
 zypper_state: latest
 zypper_enablerepo: ""
 zypper_disablerepo: "*"
 zypper_exclude: ""
 
-# Debian-based systems
+# Debian-based systems (apt)
 deb_name: "*"
 deb_state: latest
 deb_enablerepo: ""
 deb_disablerepo: "*"
 deb_exclude: ""
 
-# Arch-based systems
+# Arch-based systems (pacman)
 arch_name: "*"
 arch_state: latest
 arch_enablerepo: ""
@@ -36,7 +36,8 @@ arch_disablerepo: "*"
 arch_exclude: ""
 
 ### Key list
-rpm_fusion:
+key_list:
+# rpm_fusion:
   - "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
   - "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
 
