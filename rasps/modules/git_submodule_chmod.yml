@@ -1,7 +1,0 @@
-- name: "Changing permissions on git folders"
-  ansible.builtin.file:
-    state: directory
-    path: /home/zeno/Documents/from_git
-    recurse: yes
-    owner: zeno
-    group: zeno

@@ -1,8 +1,0 @@
-- name: "INSTALLING YOUTUBE-DL"
-  pip:
-    name: youtube-dl
-    executable: pip3
-
-- name: "Installing shreddit"
-  pip:
-    name: shreddit
