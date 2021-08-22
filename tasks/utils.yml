@@ -1,0 +1,20 @@
+- name: "INSTALLING UTILITIES"
+  dnf:
+    state: latest
+    name:
+      - bat
+      - cmake
+      - cronie
+      - dnf-utils
+      - gnome-tweaks
+      - gparted
+      - htop
+      - lm_sensors
+      - micro
+      - neofetch
+      - openssl
+      - rclone
+      - rclone-browser
+      - rpm-cron
+      - variety
+      - xclip
