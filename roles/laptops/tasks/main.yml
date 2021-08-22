@@ -1,2 +1,48 @@
 ---
 # tasks to be run on laptops
+- name: "Enable repos"
+  tags: fedora,repos,all
+  import_tasks: tasks/rhel/repos.yml
+
+- name: "Installing utils"
+  tags: utils,all
+  import_tasks: tasks/rhel/utils.yml
+
+- name: "Download GitHub repos"
+  tags: github
+  import_tasks:
+    - tasks/github/git_submodule_mkdir.yml
+    - tasks/github/git_submodule_blesh.yml
+    - tasks/github/git_submodule_chmod.yml
+
+- name: "Installing language packs"
+  tags: langs,all
+  import_tasks: tasks/rhel/langs.yml
+
+- name: "Installing fonts"
+  tags: fonts,all
+  import_tasks: tasks/rhel/fonts.yml
+
+- name: "Installing ProtonVPN"
+  tags: pvpn
+  import_tasks: tasks/rhel/pvpn.yml
+
+- name: "Installing Visual Studio Code"
+  tags: vscode,all
+  import_tasks: tasks/rhel/vscode.yml
+
+- name: "Installing Brave browser"
+  tags: brave,all
+  import_tasks: tasks/rhel/brave.yml
+
+- name: "Installing PIP packages"
+  tags: pip,all
+  import_tasks: tasks/rhel/pip.yml
+
+- name: "Installing Flatpaks"
+  tags: flatpak
+  import_tasks: tasks/rhel/flatpaks.yml
+
+- name: "Installing GNOME extensions"
+  tags: gnome,all
+  import_tasks: tasks/rhel/gnome-extensions.yml
