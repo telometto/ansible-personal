@@ -1,7 +1,17 @@
 - name: "Removing old Docker installations"
   dnf:
     state: absent
-    name: docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
 
 - name: "Installing dnf-plugins-core (required)"
   dnf:
@@ -9,9 +19,13 @@
     name:
       - dnf-plugins-core
 
-- name: "Adding Docker repo"
-  ansible.builtin.command:
-    cmd: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+- name: "Importing Docker security keys and enabling repo"
+  yum_repository:
+    name: "Docker repo"
+    description: "Official Docker repo"
+    baseurl: "https://download.docker.com/linux/fedora/docker-ce.repo"
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
 
 - name: "Installing Docker"
   dnf:
