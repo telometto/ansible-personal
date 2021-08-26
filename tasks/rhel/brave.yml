@@ -4,14 +4,9 @@
     name:
       - dnf-plugins-core
 
-- name: "Importing Brave security keys and enabling repo"
-  yum_repository:
-    name: "Brave browser repo"
-    description: "Official Brave repo"
-    baseurl: "https://brave-browser-rpm-release.s3.brave.com/x86_64/"
-    gpgcheck: yes
-    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-    
+- name: "Adding Brave browser repo"
+  ansible.builtin.command: dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+
 - name: "Updating cache"
   dnf:
     update_cache: yes

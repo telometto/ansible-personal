@@ -13,7 +13,7 @@
       - de.haeckerfelix.Shortwave
       - eu.scarpetta.PDFMixTool
       - im.riot.Riot
-      - io.mpv.Mpv
+      #- io.mpv.Mpv
       - org.gnome.Evolution
       - org.gnome.Extensions
       - org.mozilla.Thunderbird
