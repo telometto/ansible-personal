@@ -45,5 +45,5 @@
   import_tasks: tasks/rhel/flatpaks.yml
 
 - name: "Installing GNOME extensions"
-  tags: flatpak
-  import_tasks: tests/gnome-extensions.yml
+  tags: gnome
+  import_tasks: tasks/rhel/gnome-extensions.yml
