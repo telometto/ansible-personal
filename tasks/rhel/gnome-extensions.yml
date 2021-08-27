@@ -5,7 +5,7 @@
 # For openweather
       - dconf
       - gettext
-      - pkg-config
+      - pkgconf-pkg-config
       - git
       - glib2
       - glib2-devel
@@ -14,7 +14,6 @@
       - autoconf
       - automake
       - gettext-devel
-      - gnome-tweak-tool
 # For GSConnect
       - openssl
       - nautilus-python
