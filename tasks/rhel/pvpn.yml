@@ -10,7 +10,7 @@
   dnf:
     state: present
     name: "https://protonvpn.com/download/protonvpn-stable-release-1.0.1-1.noarch.rpm"
-  when: ansible_distribution == 'Fedora' and ansible_distribution_major_version|int == 34
+  when: ansible_distribution in ["Fedora","RHEL","CentOS"]
 
 - name: "Updating cache"
   dnf:
