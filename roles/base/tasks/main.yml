@@ -2,19 +2,19 @@
 # pre-tasks for RHEL-based systems
 - name: "Update the system"
   import_tasks: roles/base/tasks/rhel.yml
-  when: ansible_facts['os_family']|lower == 'redhat'
+  when: ansible_distribution in ["Fedora","RHEL","CentOS"]
 
 # pre-tasks for SUSE-based systems
 - name: "Update the system"
   import_tasks: roles/base/tasks/suse.yml
-  when: ansible_facts['os_family']|lower == 'opensuse'
+  when: ansible_distribution == 'openSUSE'
 
 # pre-tasks for Debian-based systems
 - name: "Update the system"
   import_tasks: roles/base/tasks/debian.yml
-  when: ansible_facts['os_family']|lower == 'debian'
+  when: ansible_distribution in ["Ubuntu","Debian"]
 
 # pre-tasks for Arch-based systems
 - name: "Update the system"
   import_tasks: roles/base/tasks/arch.yml
-  when: ansible_facts['os_family']|lower == 'arch'
+  when: ansible_distribution in ["Arch","Manjaro"]
