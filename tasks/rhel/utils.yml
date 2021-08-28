@@ -4,6 +4,8 @@
     name:
     # Alternative to 'cat'
       - bat
+    # Alternative to 'top'
+      - bpytop
     # C compiler
       - cmake
     # Alternative to 'cron'
@@ -14,8 +16,6 @@
       - gnome-tweaks
     # Util for disk partitioning
       - gparted
-    # Alternative to 'top'
-      - htop
     # Required to read sensors
       - lm_sensors
     # CLI text editor
