@@ -6,7 +6,8 @@
 
 - name: "Adding Brave browser repo"
   yum_repository:
-    name: Brave browser
+    name: brave
+    description: Brave official repo
     baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
     enabled: yes
     gpgcheck: yes

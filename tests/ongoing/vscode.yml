@@ -1,6 +1,7 @@
 - name: "Importing Visual Studio security keys and enabling repo"
   yum_repository:
-    name: Visual Studio Code
+    name: vscode
+    description: VS official repo
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     enabled: yes
     gpgcheck: yes
