@@ -1,0 +1,41 @@
+- name: "Removing old Docker installations"
+  dnf:
+    state: absent
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+
+- name: "Installing dnf-plugins-core (required)"
+  dnf:
+    state: latest
+    name:
+      - dnf-plugins-core
+
+- name: "Enabling Docker CE Stable"
+  yum_repository:
+    name: docker-ce
+    description: Docker CE
+    baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Updating cache"
+  dnf:
+    update_cache: yes
+
+- name: "Installing Docker"
+  dnf:
+    state: latest
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
