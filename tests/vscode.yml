@@ -1,0 +1,16 @@
+- name: "Importing Visual Studio security keys and enabling repo"
+  Yum_repository:
+    name: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: "Updating cache"
+  dnf:
+    update_cache: yes
+  
+- name: "Installing VSCode"
+  dnf:
+    state: latest
+    name: code
