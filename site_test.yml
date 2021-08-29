@@ -2,6 +2,8 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: tasks
-      import_tasks:
-        - tests/ongoing
+    - name: task1
+      import_tasks: tests/ongoing/brave.yml
+
+    - name: task2
+      import_tasks: tests/ongoing/vscode.yml
