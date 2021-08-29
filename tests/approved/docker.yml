@@ -21,7 +21,7 @@
 
 - name: "Enabling Docker CE Stable"
   yum_repository:
-    name: [docker-ce-stable]
+    name: docker-ce-stable
     description: Docker CE Stable - $basearch
     baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
     enabled: yes
@@ -30,7 +30,7 @@
 
 - name: "Adding Docker CE Stable - Debuginfo"
   yum_repository:
-    name: [docker-ce-stable-debuginfo]
+    name: docker-ce-stable-debuginfo
     description: Docker CE Stable - Debuginfo $basearch
     baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/stable
     enabled: no
@@ -39,7 +39,7 @@
 
 - name: "Adding Docker CE Stable - Sources"
   yum_repository:
-      name: [docker-ce-stable-source]
+      name: docker-ce-stable-source
       description: Docker CE Stable - Sources
       baseurl: https://download.docker.com/linux/fedora/$releasever/source/stable
       enabled: no
@@ -48,7 +48,7 @@
 
 - name: "Adding Docker CE Test"
   yum_repository:
-      name: [docker-ce-test]
+      name: docker-ce-test
       description: Docker CE Test - $basearch
       baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/test
       enabled: no
@@ -57,7 +57,7 @@
 
 - name: "Adding Docker CE Test - Debuginfo"
   yum_repository:
-      name: [docker-ce-test-debuginfo]
+      name: docker-ce-test-debuginfo
       description: Docker CE Test - Debuginfo $basearch
       baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/test
       enabled: no
@@ -66,7 +66,7 @@
 
 - name: "Adding Docker CE Test - Sources"
   yum_repository:
-      name: [docker-ce-test-source]
+      name: docker-ce-test-source
       description: Docker CE Test - Sources
       baseurl: https://download.docker.com/linux/fedora/$releasever/source/test
       enabled: no
@@ -75,7 +75,7 @@
 
 - name: "Adding Docker CE Nightly"
   yum_repository:
-      name: [docker-ce-nightly]
+      name: docker-ce-nightly
       description: Docker CE Nightly - $basearch
       baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/nightly
       enabled: no
@@ -84,7 +84,7 @@
 
 - name: "Adding Docker CE Nightly - Debuginfo"
   yum_repository:
-      name: [docker-ce-nightly-debuginfo]
+      name: docker-ce-nightly-debuginfo
       description: Docker CE Nightly - Debuginfo $basearch
       baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/nightly
       enabled: no
@@ -93,7 +93,7 @@
 
 - name: "Adding Docker CE Nightly - Sources"
   yum_repository:
-      name: [docker-ce-nightly-source]
+      name: docker-ce-nightly-source
       description: Docker CE Nightly - Sources
       baseurl: https://download.docker.com/linux/fedora/$releasever/source/nightly
       enabled: no
