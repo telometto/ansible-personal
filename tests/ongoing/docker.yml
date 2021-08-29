@@ -1,0 +1,113 @@
+- name: "Removing old Docker installations"
+  dnf:
+    state: absent
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+
+- name: "Installing dnf-plugins-core (required)"
+  dnf:
+    state: latest
+    name:
+      - dnf-plugins-core
+
+- name: "Enabling Docker CE Stable"
+  yum_repository:
+    name: [docker-ce-stable]
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Stable - Debuginfo"
+  yum_repository:
+    name: [docker-ce-stable-debuginfo]
+    description: Docker CE Stable - Debuginfo $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/stable
+    enabled: no
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Stable - Sources"
+  yum_repository:
+      name: [docker-ce-stable-source]
+      description: Docker CE Stable - Sources
+      baseurl: https://download.docker.com/linux/fedora/$releasever/source/stable
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Test"
+  yum_repository:
+      name: [docker-ce-test]
+      description: Docker CE Test - $basearch
+      baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/test
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Test - Debuginfo"
+  yum_repository:
+      name: [docker-ce-test-debuginfo]
+      description: Docker CE Test - Debuginfo $basearch
+      baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/test
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Test - Sources"
+  yum_repository:
+      name: [docker-ce-test-source]
+      description: Docker CE Test - Sources
+      baseurl: https://download.docker.com/linux/fedora/$releasever/source/test
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Nightly"
+  yum_repository:
+      name: [docker-ce-nightly]
+      description: Docker CE Nightly - $basearch
+      baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/nightly
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Nightly - Debuginfo"
+  yum_repository:
+      name: [docker-ce-nightly-debuginfo]
+      description: Docker CE Nightly - Debuginfo $basearch
+      baseurl: https://download.docker.com/linux/fedora/$releasever/debug-$basearch/nightly
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Adding Docker CE Nightly - Sources"
+  yum_repository:
+      name: [docker-ce-nightly-source]
+      description: Docker CE Nightly - Sources
+      baseurl: https://download.docker.com/linux/fedora/$releasever/source/nightly
+      enabled: no
+      gpgcheck: yes
+      gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: "Updating cache"
+  dnf:
+    update_cache: yes
+
+- name: "Installing Docker"
+  dnf:
+    state: latest
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
