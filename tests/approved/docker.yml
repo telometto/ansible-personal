@@ -1,3 +1,4 @@
+# this task should only be run once
 - name: "Removing old Docker installations"
   dnf:
     state: absent
