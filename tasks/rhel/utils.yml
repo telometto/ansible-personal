@@ -31,3 +31,5 @@
       - variety
     # Copy-paste into CLI
       - xclip
+    # Powerful video downloader
+      - youtube-dl
