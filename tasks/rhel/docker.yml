@@ -1,4 +1,13 @@
 # this task should only be run once
+- name: "Installing dnf-plugins-core (required)"
+  dnf:
+    state: latest
+    name:
+      - dnf-plugins-core
+
+- name: "Adding Docker repo"
+  ansible.builtin.command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
 - name: "Removing old Docker installations"
   dnf:
     state: absent
@@ -13,15 +22,6 @@
       - docker-selinux
       - docker-engine-selinux
       - docker-engine
-
-- name: "Installing dnf-plugins-core (required)"
-  dnf:
-    state: latest
-    name:
-      - dnf-plugins-core
-
-- name: "Adding Docker repo"
-  ansible.builtin.command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 
 - name: "Installing Docker"
   dnf:
