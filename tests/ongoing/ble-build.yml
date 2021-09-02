@@ -1,0 +1,5 @@
+- name: "Installing ble.sh"
+  community.general.make:
+    chdir: ~/Documents/from_git/ble.sh
+    target: install
+    params:
