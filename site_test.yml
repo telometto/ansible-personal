@@ -1,4 +1,5 @@
 ---
+# this playbook is only for testing scripts
 - hosts: localhost
   become: true
   tasks:
