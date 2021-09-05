@@ -1,6 +1,6 @@
 - name: "Checking if dir exists"
   ansible.builtin.stat:
-    path: /home/zeno/Documents/from_git/libvibrant
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
     get_checksum: no
   register: p
 
@@ -12,5 +12,20 @@
 - name: "Cloning ble.sh repo"
   ansible.builtin.git:
     repo: 'https://github.com/akinomyoga/ble.sh.git'
-    dest: /home/zeno/Documents/from_git/ble.sh
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
   when: p.stat.exists == False
+
+- name: "Building and instaling ble.sh"
+  community.general.make:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+    target: install
+    params: PREFIX=/home/{{ lookup('env', 'USER') }}/.local
+
+- name: "Sourcing ble.sh to .bashrc"
+  ansible.builtin.shell: echo 'source ~/.local/share/blesh/ble.sh' >> /home/{{ lookup('env', 'USER') }}/.bashrc
+  register: result
+
+- name: "Info"
+  ansible.builtin.debug:
+    var: result
+    msg: "Remember to close and re-open the terminal to let the changes take effect!"
