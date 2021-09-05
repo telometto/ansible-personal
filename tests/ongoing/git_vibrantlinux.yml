@@ -27,7 +27,7 @@
 
 - name: "Checking if dir exists"
   ansible.builtin.stat:
-    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
     get_checksum: no
   register: p
 
@@ -41,6 +41,14 @@
     repo: 'https://github.com/zee-mzha/vibrantLinux.git'
     dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
   when: p.stat.exists == False
+
+- name: "Changing ownership"
+  ansible.builtin.file:
+    state: directory
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
+    recurse: yes
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
 
 - name: "Changing from the use of qmake-qt5 to qmake-qt6"
   ansible.builtin.lineinfile:

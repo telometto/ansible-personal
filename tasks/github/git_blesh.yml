@@ -15,6 +15,14 @@
     dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
   when: p.stat.exists == False
 
+- name: "Changing ownership"
+  ansible.builtin.file:
+    state: directory
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+    recurse: yes
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+
 - name: "Building and instaling ble.sh"
   community.general.make:
     chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
@@ -23,9 +31,9 @@
 
 - name: "Sourcing ble.sh to .bashrc"
   ansible.builtin.shell: echo 'source ~/.local/share/blesh/ble.sh' >> /home/{{ lookup('env', 'USER') }}/.bashrc
-  register: result
-
-- name: "Info"
-  ansible.builtin.debug:
-    var: result
-    msg: "Remember to close and re-open the terminal to let the changes take effect!"
+#  register: result
+#
+#- name: "Info"
+#  ansible.builtin.debug:
+#    var: result
+#    msg: "Remember to close and re-open the terminal to let the changes take effect!"
