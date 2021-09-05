@@ -1,6 +1,0 @@
-- name: "Creating folders"
-  ansible.builtin.file:
-    state: directory
-    path: /home/zeno/Documents/from_git
-    owner: zeno
-    group: zeno
