@@ -1,0 +1,12 @@
+- name: "Building and installing ble.sh"
+  community.general.make:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+    target: install
+    params: PREFIX=/home/{{ lookup('env', 'USER') }}/.local
+
+- name: "Sourcing ble.sh to .bashrc"
+  ansible.builtin.shell: echo 'source ~/.local/share/blesh/ble.sh' >> /home/{{ lookup('env', 'USER') }}/.bashrc
+
+- name: "ATTENTION!"
+  ansible.builtin.debug:
+    msg: "In order for the changes of ble.sh to take effect, you will need to restart your terminal after all the operations are finished!"
