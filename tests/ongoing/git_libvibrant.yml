@@ -12,13 +12,13 @@
       - libXNVCtrl
       - libXNVCtrl-devel
 
-- name: "Checking if dir exists"
+- name: "Checking if (libvibrant) dir exists"
   ansible.builtin.stat:
-    path: /home/zeno/Documents/from_git/libvibrant
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
     get_checksum: no
   register: p
 
-- name: "Reporting if dir exists"
+- name: "Reporting if (libvibrant) dir exists"
   ansible.builtin.debug:
     msg: "Path exists and is a directory"
   when: p.stat.isdir is defined and p.stat.isdir
@@ -26,5 +26,22 @@
 - name: "Cloning GitLab repo: libvibrant"
   ansible.builtin.git:
     repo: 'https://gitlab.com/vibrance/libvibrant-legacy.git'
-    dest: /home/zeno/Documents/from_git/libvibrant
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
   when: p.stat.exists == False
+
+- name: "Creating 'build' dir"
+  ansible.builtin.file:
+    state: directory
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+
+- name: "Executing cmake for libvibrant"
+  ansible.builtin.shell:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
+    cmd: cmake ..
+
+- name: "Building and installing libvibrant"
+  community.general.make:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
+    target: install

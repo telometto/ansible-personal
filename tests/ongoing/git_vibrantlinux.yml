@@ -27,7 +27,7 @@
 
 - name: "Checking if dir exists"
   ansible.builtin.stat:
-    path: /home/zeno/Documents/from_git/libvibrant
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
     get_checksum: no
   register: p
 
@@ -39,5 +39,16 @@
 - name: "Cloning GitHub repo: vibrantLinux"
   ansible.builtin.git:
     repo: 'https://github.com/zee-mzha/vibrantLinux.git'
-    dest: /home/zeno/Documents/from_git/vibrantlinux
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
   when: p.stat.exists == False
+
+- name: "Changing from the use of qmake-qt5 to qmake-qt6"
+  ansible.builtin.lineinfile:
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux/update.sh
+    regexp: '^qt5'
+    line: qt6
+
+- name: "Installing vibrantLinux"
+  ansible.builtin.shell: update.sh
+  args:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
