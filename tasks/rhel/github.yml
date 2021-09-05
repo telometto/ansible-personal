@@ -1,9 +1,6 @@
-- import_tasks: tasks/github/git_submodule_mkdir.yml
-- import_tasks: tasks/github/git_submodule_blesh.yml
-- import_tasks: tasks/github/git_submodule_libvibrant.yml
-- import_tasks: tasks/github/git_submodule_vibrantlinux.yml
-- import_tasks: tasks/github/git_submodule_proton-ge.yml
-- import_tasks: tasks/github/git_submodule_chmod.yml
-#- import_tasks: tasks/github/build_blesh
-#- import_tasks: tasks/github/build_libvib
-#- import_tasks: tasks/github/build_viblin
+- import_tasks: tasks/github/mkdirs.yml
+- import_tasks: tasks/github/git_blesh.yml
+- import_tasks: tasks/github/git_libvibrant.yml
+- import_tasks: tasks/github/git_vibrantlinux.yml
+- import_tasks: tasks/github/git_proton-ge.yml
+- import_tasks: tasks/github/chmod.yml
