@@ -25,13 +25,13 @@
       - xcb-util-wm
       - xcb-util-wm-devel
 
-- name: "Checking if dir exists"
+- name: "Checking if (vibrantlinux) dir exists"
   ansible.builtin.stat:
     path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
     get_checksum: no
   register: p
 
-- name: "Reporting if dir exists"
+- name: "Reporting if (vibrantlinux) dir exists"
   ansible.builtin.debug:
     msg: "Path exists and is a directory"
   when: p.stat.isdir is defined and p.stat.isdir
@@ -50,13 +50,11 @@
     owner: "{{ lookup('env', 'USER') }}"
     group: "{{ lookup('env', 'USER') }}"
 
-- name: "Changing from the use of qmake-qt5 to qmake-qt6"
-  ansible.builtin.lineinfile:
-    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux/update.sh
-    regexp: '^qt5'
-    line: qt6
+#- name: "Changing from the use of qmake-qt5 to qmake-qt6"
+#  ansible.builtin.lineinfile:
+#    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux/update.sh
+#    regexp: '^qt5'
+#    line: qt6
 
 - name: "Installing vibrantLinux"
-  ansible.builtin.shell: update.sh
-  args:
-    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
+  ansible.builtin.shell: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinuxupdate.sh
