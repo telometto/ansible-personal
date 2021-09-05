@@ -4,4 +4,4 @@
   become: true
   tasks:
     - name: task1
-      import_tasks: tests/ongoing/docker.yml
+      import_tasks: tests/ongoing/github.yml
