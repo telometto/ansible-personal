@@ -14,7 +14,7 @@
 
 - name: "Checking if dir exists"
   ansible.builtin.stat:
-    path: /home/zeno/Documents/from_git/libvibrant
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
     get_checksum: no
   register: p
 
@@ -26,5 +26,5 @@
 - name: "Cloning GitLab repo: libvibrant"
   ansible.builtin.git:
     repo: 'https://gitlab.com/vibrance/libvibrant-legacy.git'
-    dest: /home/zeno/Documents/from_git/libvibrant
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
   when: p.stat.exists == False

@@ -1,6 +1,6 @@
 - name: "Creating folders"
   ansible.builtin.file:
     state: directory
-    path: /home/zeno/Documents/from_git
-    owner: zeno
-    group: zeno
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
