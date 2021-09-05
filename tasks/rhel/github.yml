@@ -4,3 +4,6 @@
 - import_tasks: tasks/github/git_vibrantlinux.yml
 - import_tasks: tasks/github/git_proton-ge.yml
 - import_tasks: tasks/github/chmod.yml
+- import_tasks: tasks/github/build_blesh.yml
+- import_tasks: tasks/github/build_libvib.yml
+- import_tasks: tasks/github/build_viblin.yml
