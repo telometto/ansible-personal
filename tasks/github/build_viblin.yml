@@ -1,1 +1,12 @@
--
+- name: "Changing ownership"
+  ansible.builtin.file:
+    state: directory
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
+    recurse: yes
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+
+- name: "Installing vibrantLinux"
+  ansible.builtin.shell: ./update.sh
+  args:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
