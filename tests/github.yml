@@ -1,4 +1,4 @@
-- import_tasks: tasks/github/mkdir.yml
+- import_tasks: tasks/github/mkdirs.yml
 - import_tasks: tests/ongoing/git_libvibrant.yml
 - import_tasks: tests/ongoing/git_vibrantlinux.yml
 - import_tasks: tasks/github/chmod.yml
