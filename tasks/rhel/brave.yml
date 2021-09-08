@@ -20,4 +20,4 @@
 - name: "Installing Brave browser"
   dnf:
     state: latest
-    name: brave-browser    
+    name: brave-browser
