@@ -1,0 +1,13 @@
+- name: "Installing software from Copr"
+  dnf:
+    state: latest
+    name:
+    # Substitutes fonts for browsers
+      - fontconfig-font-replacements
+      - fontconfig-enhanced-defaults
+
+    # Allows you to set a custom wallpaper in the GDM (welcome screen)
+      - gdm-wallpaper
+
+    # A nice font family
+      - hack-fonts

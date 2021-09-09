@@ -1,0 +1,6 @@
+- name: "Cleaning up cache"
+  dnf:
+    autoremove: yes
+
+- name: "Sorting layout of start menu"
+  ansible.builtin.shell: gsettings reset org.gnome.shell app-picker-layout
