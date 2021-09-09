@@ -108,15 +108,21 @@
       - vulkan-loader
       - vulkan-loader.i686
 
+- name: "Checking if Steam dir exists"
+  ansible.builtin.stat:
+    path: /home/{{ lookup('env', 'USER') }}/.steam
+    get_checksum: no
+  register: p
+
+- name: "Reporting if Steam dir exists"
+  ansible.builtin.debug:
+    msg: "Path exists and is a directory"
+  when: p.stat.isdir is defined and p.stat.isdir
+
 - name: "Creating folder to contain Proton-GE"
   ansible.builtin.file:
     state: directory
     path: /home/{{ lookup('env', 'USER') }}/.steam/root/compatibilitytools.d
     owner: "{{ lookup('env', 'USER') }}"
     group: "{{ lookup('env', 'USER') }}"
-
-#- name: "Downloading latest Proton-GE release"
-#  community.general.github_release:
-#    user: GloriousEggroll
-#    repo: proton-ge-custom
-#    action: latest_release
+  when: p.stat.exists == True
