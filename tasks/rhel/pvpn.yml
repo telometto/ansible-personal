@@ -12,10 +12,6 @@
     name: "https://protonvpn.com/download/protonvpn-stable-release-1.0.1-1.noarch.rpm"
   when: ansible_distribution in ["Fedora","RHEL","CentOS"]
 
-- name: "Updating cache"
-  dnf:
-    update_cache: yes
-
 - name: "Installing ProtonVPN"
   dnf:
     state: latest
