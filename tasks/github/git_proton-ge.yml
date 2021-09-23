@@ -85,6 +85,8 @@
       - tcp_wrappers-libs.i686
       - unixODBC.i686
       - zlib-devel.i686
+    # Extras (uknown if required)
+      - llvm
 
 - name: "Installing required groupinstall"
   dnf:
@@ -122,7 +124,7 @@
 - name: "Creating folder to contain Proton-GE"
   ansible.builtin.file:
     state: directory
-    path: /home/{{ lookup('env', 'USER') }}/.steam/root/compatibilitytools.d
+    path: /home/{{ lookup('env', 'USER') }}/.local/share/Steam/compatibilitytools.d
     owner: "{{ lookup('env', 'USER') }}"
     group: "{{ lookup('env', 'USER') }}"
   when: p.stat.exists == True
