@@ -1,2 +1,4 @@
 site.yml
 site_test.yml
+inventory
+ansible.cfg
