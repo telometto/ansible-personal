@@ -30,21 +30,22 @@
     var: result.rc
 
 - name: "Rebooting the system if necessary"
-  command: shutdown -r +3 "Ansible triggered updates"
-  async: 300
+  command: shutdown -r +1 "Ansible triggered updates"
+  async: 30
   poll: 0
   when: result.rc == 1
 
 # This pause is mandatory, otherwise the existing control
 # connection gets reused!
 # (https://gist.github.com/infernix/a968f23c4f4e1d6723e4)
-#- name: "Pausing to allow device shutdown"
-#  pause: seconds=30
-#  when: result.rc == 1
-#
-#- name: "Waiting for reboot to complete and SSH to become available"
-#  local_action: wait_for host={{ inventory_hostname }} port=22
-#    state=started delay=30 timeout=600
-#  retries: 30
-#  delay: 10
-#  when: result.rc == 1
+- name: "Pausing to allow device shutdown"
+  pause:
+    minutes: 4
+  when: result.rc == 1
+
+- name: "Waiting for reboot to complete and SSH to become available"
+  local_action: wait_for host={{ inventory_hostname }} port=22
+    state=started delay=30 timeout=600
+  retries: 30
+  delay: 10
+  when: result.rc == 1
