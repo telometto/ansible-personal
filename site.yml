@@ -1,20 +1,21 @@
 ---
 # playbook
-- hosts: localhost
+- hosts: all
   become: true
   roles:
     - roles/base
 
+- hosts: all
+  become: true
+  vars_files:
+    - vars/main.yml
+  roles:
+    - roles/desktops
+#
 #- hosts: localhost
 #  become: true
 #  vars_files:
-#    - vars/main.yml
+#  - vars/main.yml
 #  roles:
-#    - roles/desktops
-
-- hosts: localhost
-  become: true
-  vars_files:
-  - vars/main.yml
-  roles:
-    - roles/laptops
+#    - roles/laptops
+#
