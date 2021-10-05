@@ -1,0 +1,4 @@
+- name: "Building and installing SamRewritten"
+  community.general.make:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/samrewritten
+    target: install
