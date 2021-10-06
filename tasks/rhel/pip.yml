@@ -4,6 +4,10 @@
 #    name: youtube-dl
 #    executable: pip3
 
+- name: "Installing pip-review"
+  pip:
+    name: pip-review
+
 - name: "Installing shreddit"
   pip:
     name: shreddit
