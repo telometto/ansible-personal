@@ -47,3 +47,6 @@
 
     # Powerful video downloader
       - youtube-dl
+
+    # Extras
+      - gobject-introspection-devel # required to install/update certain Python packages
