@@ -20,19 +20,19 @@
     name: fedora-workstation-repositories
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['distribution_major_version'] > "35"
+    - ansible_facts['distribution_major_version'] < "35"
 
 # RPM Fusion
 - name: "Enabling RPM (free) repo"
   dnf:
     state: latest
-    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_facts['distribution']_major_version}}.noarch.rpm"
+    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
   when: ansible_facts['distribution'] == "Fedora"
 
 - name: "Enabling RPM (non-free) repo"
   dnf:
     state: latest
-    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_facts['distribution']_major_version}}.noarch.rpm"
+    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
   when: ansible_facts['distribution'] == "Fedora"
 
 # Flathub
@@ -41,9 +41,7 @@
     name: flathub
     state: present
     flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
-  when:
-    - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['distribution_major_version'] > "35"
+  when: ansible_facts['distribution_major_version'] < "35"
 
 # Copr
 - name: "Enabling copr: scrcpy"
