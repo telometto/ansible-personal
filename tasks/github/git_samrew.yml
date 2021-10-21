@@ -15,7 +15,7 @@
     dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/samrewritten
   when: p.stat.exists == False
 
-- name: "Installing required packages"
+- name: "Installing SamRewritten required dependencies"
   dnf:
     state: latest
     name:

@@ -3,14 +3,6 @@
     chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
     cmd: cmake ..
 
-#- name: "Changing ownership of 'build' dir - subdirs and subfiles"
-#  ansible.builtin.file:
-#    state: directory
-#    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant
-#    recurse: yes
-#    owner: "{{ lookup('env', 'USER') }}"
-#    group: "{{ lookup('env', 'USER') }}"
-
 - name: "Building and installing libvibrant"
   community.general.make:
     chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
