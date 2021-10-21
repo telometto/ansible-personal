@@ -1,7 +1,0 @@
----
-# this playbook is only for testing scripts
-- hosts: localhost
-  become: true
-  tasks:
-    - name: task1
-      import_tasks: tests/github.yml
