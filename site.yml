@@ -1,12 +1,12 @@
 ---
 # playbook
 - hosts: all
-  become: true
+  become: yes
   roles:
     - roles/base
 
 - hosts: all
-  become: true
+  become: yes
   vars_files:
     - vars/main.yml
   roles:
@@ -19,3 +19,10 @@
 #  roles:
 #    - roles/laptops
 #
+- hosts: all
+  become: no
+  become_user: zeno
+  roles:
+    - roles/conditionals/github.yml
+    - roles/conditionals/misc.yml
+    - tasks/extras/misc/pip.yml
