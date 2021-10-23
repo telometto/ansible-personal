@@ -19,7 +19,7 @@
     state: latest
     name: fedora-workstation-repositories
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version'] < "35"
 
 # RPM Fusion

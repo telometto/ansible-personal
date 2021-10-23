@@ -3,14 +3,13 @@
 - name: "Update the system"
   import_tasks: roles/base/tasks/rhel.yml
   when:
-  - ansible_facts['distribution'] == "Fedora"
-  - ansible_facts['distribution_major_version'] > "35"
+  - ansible_facts['os_family'] == "RedHat"
 
 # pre-tasks for SUSE-based systems
 - name: "Update the system"
   import_tasks: roles/base/tasks/suse.yml
   when:
-  - ansible_facts['distribution'] == "OpenSUSE"
+  - ansible_facts['os_family'] == "Suse"
 
 # pre-tasks for Debian-based systems
 - name: "Update the system"
@@ -22,4 +21,4 @@
 - name: "Update the system"
   import_tasks: roles/base/tasks/arch.yml
   when:
-  - ansible_facts['os_family'] == "Arch"
+  - ansible_facts['os_family'] == "Archlinux"
