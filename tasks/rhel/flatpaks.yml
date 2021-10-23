@@ -19,7 +19,7 @@
       - com.microsoft.Teams
 
     # Screen recording
-      - com.obsproject.Studio
+    #  - com.obsproject.Studio
 
     # Stream music
       - com.spotify.Client
@@ -28,7 +28,7 @@
       - com.teamspeak.TeamSpeak
 
     # Programming software
-      #- com.visualstudio.code
+    #  - com.visualstudio.code
 
     # Listen to Internet radio
       - de.haeckerfelix.Shortwave
@@ -40,7 +40,7 @@
       - im.riot.Riot
 
     # CLI media player
-      #- io.mpv.Mpv
+    #  - io.mpv.Mpv
 
     # Email and calendar
       - org.gnome.Evolution
@@ -49,7 +49,7 @@
       - org.gnome.Extensions
 
     # Email software
-      - org.mozilla.Thunderbird
+    #  - org.mozilla.Thunderbird
 
     # Office suite
       - org.onlyoffice.desktopeditors
