@@ -1,0 +1,49 @@
+---
+# base tasks - i.e. to be run on all systems
+- name: "Updating the system"
+  dnf:
+    update_cache: yes
+    name: "*"
+    state: latest
+  register: dnfcommandout
+
+- name: "Print any error if dnf failed"
+  debug:
+    msg: "dnf command produced errors"
+  when: dnfcommandout is not defined
+
+# DO NOT EDIT FROM HERE...
+- name: "Installing dnf-utils"
+  dnf:
+    state: latest
+    name: dnf-utils
+# ... TO HERE!
+
+- name: "Checking to see if the system needs to be rebooted"
+  command: needs-restarting -r
+  register: result
+  ignore_errors: yes
+
+- name: "Displaying results"
+  debug:
+    var: result.rc
+
+- name: "Rebooting the system if necessary"
+  command: shutdown -r +1 "Ansible triggered updates"
+  async: 30
+  poll: 0
+  when: result.rc == 1
+
+# This pause is mandatory, otherwise the existing control
+# connection gets reused!
+# (https://gist.github.com/infernix/a968f23c4f4e1d6723e4)
+- name: "Pausing to allow device shutdown"
+  pause:
+    minutes: 2
+  when: result.rc == 1
+
+- name: "Waiting for reboot to complete and SSH to become available"
+  local_action: wait_for host={{ inventory_hostname }} state=started delay=30 timeout=600
+  retries: 30
+  delay: 10
+  when: result.rc == 1
