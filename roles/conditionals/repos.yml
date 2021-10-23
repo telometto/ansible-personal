@@ -1,0 +1,14 @@
+- name: "Executing repo tasks if conditions are met"
+  ansible.builtin.stat:
+    path:
+      - /etc/yum.repos.d/brave.repo
+      - /etc/yum.repos.d/protonvpn-stable.repo
+      - /etc/yum.repos.d/rpmfusion-free
+      - /etc/yum.repos.d/rpmfusion-nonfree
+      - /etc/yum.repos.d/vscode.repo
+    get_checksum: no
+  register: p
+
+- name: "Conditions met!"
+  import_tasks: tasks/rhel/repos.yml
+  when: p.stat.exists == False #is defined and p.stat.exists == False

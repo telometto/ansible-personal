@@ -1,0 +1,15 @@
+- name: "Executing GitHub tasks if conditions are met"
+  ansible.builtin.stat:
+    path: /{{ lookup('env', 'HOME') }}/{{ lookup('env', 'USER') }}/Documents/from_git/
+      #- /home/{{ lookup('env', 'USER') }}/.local/share/Steam/compatibilitytools.d
+    get_checksum: no
+  register: p
+
+#- name: "Reporting if dirs exists"
+#  ansible.builtin.debug:
+#    msg: "Paths exist! Skipping..."
+#  when: p.stat.isdir is defined and p.stat.isdir
+
+- name: "Conditions met!"
+  import_tasks: tasks/rhel/github.yml
+  when: p.stat.isdir is defined and p.stat.isdir == False
