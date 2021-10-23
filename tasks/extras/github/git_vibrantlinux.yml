@@ -25,19 +25,7 @@
       - xcb-util-wm
       - xcb-util-wm-devel
 
-- name: "Checking if (vibrantlinux) dir exists"
-  ansible.builtin.stat:
-    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
-    get_checksum: no
-  register: p
-
-- name: "Reporting if (vibrantlinux) dir exists"
-  ansible.builtin.debug:
-    msg: "Path exists and is a directory"
-  when: p.stat.isdir is defined and p.stat.isdir
-
 - name: "Cloning GitHub repo: vibrantLinux"
   ansible.builtin.git:
     repo: 'https://github.com/telometto/vibrantLinux.git'
     dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/vibrantlinux
-  when: p.stat.exists == False

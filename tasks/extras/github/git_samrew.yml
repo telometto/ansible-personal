@@ -1,0 +1,14 @@
+- name: "Installing SamRewritten required dependencies"
+  dnf:
+    state: latest
+    name:
+      - gtkmm30
+      - gtkmm30-devel
+      - yajl-devel
+      - curl-devel
+      - g++
+
+- name: "Cloning samrewritten repo"
+  ansible.builtin.git:
+    repo: 'https://github.com/PaulCombal/SamRewritten.git'
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/samrewritten

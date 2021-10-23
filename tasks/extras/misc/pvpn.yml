@@ -10,7 +10,7 @@
   dnf:
     state: present
     name: "https://protonvpn.com/download/protonvpn-stable-release-1.0.1-1.noarch.rpm"
-  when: ansible_distribution in ["Fedora","RHEL","CentOS"]
+  when: ansible_facts['os_family'] == "RHEL"
 
 - name: "Installing ProtonVPN"
   dnf:
