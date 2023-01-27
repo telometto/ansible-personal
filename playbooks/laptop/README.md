@@ -11,7 +11,7 @@ The only requirement is that the 'Community General' module is installed from An
 Role Variables
 --------------
 
-The script is meant to be modular. Nothing is set under `defaults/main.yml` but the `vars/` dir contains a lot of files withvariables which are supposed to be set according to your
+The script is meant to be modular. Nothing is set under `defaults/main.yml` but the `vars/` dir contains a lot of files with variables which are supposed to be set according to your
 needs, such as packages, repos, URLs etc. You can nuke and pave anything under the `vars/` dir without having to touch the rest of the script, but that's entirely up to you.
 
 Dependencies
