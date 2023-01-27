@@ -1,4 +1,0 @@
-- name: "Cloning ble.sh repo"
-  ansible.builtin.git:
-    repo: 'https://github.com/akinomyoga/ble.sh.git'
-    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh

@@ -1,7 +1,0 @@
-- name: "Installing (gaming) utilities"
-  dnf:
-    state: latest
-    name:
-      - goverlay
-      - lutris
-      - steam

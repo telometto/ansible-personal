@@ -1,8 +1,0 @@
-- name: "Building and installing ble.sh"
-  community.general.make:
-    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
-    target: install
-    params: PREFIX=/home/{{ lookup('env', 'USER') }}/.local
-
-- name: "Sourcing ble.sh to .bashrc"
-  ansible.builtin.shell: echo 'source ~/.local/share/blesh/ble.sh' >> /home/{{ lookup('env', 'USER') }}/.bashrc

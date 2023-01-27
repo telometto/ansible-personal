@@ -1,7 +1,0 @@
-- name: "Changing permissions on git folders"
-  ansible.builtin.file:
-    state: directory
-    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git
-    recurse: yes
-    owner: "{{ lookup('env', 'USER') }}"
-    group: "{{ lookup('env', 'USER') }}"

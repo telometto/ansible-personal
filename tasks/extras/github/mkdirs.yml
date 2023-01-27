@@ -1,6 +1,0 @@
-- name: "Creating folder for git repos"
-  ansible.builtin.file:
-    state: directory
-    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git
-    owner: "{{ lookup('env', 'USER') }}"
-    group: "{{ lookup('env', 'USER') }}"

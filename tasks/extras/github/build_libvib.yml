@@ -1,9 +1,0 @@
-- name: "Executing cmake for libvibrant"
-  ansible.builtin.shell:
-    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
-    cmd: cmake ..
-
-- name: "Building and installing libvibrant"
-  community.general.make:
-    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/libvibrant/build
-    target: install

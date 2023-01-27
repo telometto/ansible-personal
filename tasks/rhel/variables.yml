@@ -1,6 +1,0 @@
-# sets environment variables
-
-- name: "Setting PKG_CONFIG_VARIABLE"
-  ansible.builtin.command:
-    - export PKG_CONFIG_PATH=/usr/bin/pkgconf:/usr/lib/pkgconfig
-    - sudo ldconfig
