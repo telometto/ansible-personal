@@ -1,38 +1,35 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Role to get up and running on my desktop from a fresh Fedora install.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The only requirement is that the 'Community General' module is installed from Ansible Galaxy. To install it, you need to run: `ansible-galaxy collection install community.general`.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The script is meant to be modular. Nothing is set under `defaults/main.yml` but the `vars/` dir contains a lot of files withvariables which are supposed to be set according to your
+needs, such as packages, repos, URLs etc. You can nuke and pave anything under the `vars/` dir without having to touch the rest of the script, but that's entirely up to you.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+See 'Requirements'
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Just run `ansible-playbook -K site.yml` from inside the `playbooks/` dir, and you're good to go.
 
 License
 -------
 
-BSD
+GNU AFFERO GENERAL PUBLIC LICENSE
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+telometto

@@ -27,7 +27,7 @@ Just run `ansible-playbook -K site.yml` from inside the `playbooks/` dir, and yo
 License
 -------
 
-BSD
+GNU AFFERO GENERAL PUBLIC LICENSE
 
 Author Information
 ------------------
