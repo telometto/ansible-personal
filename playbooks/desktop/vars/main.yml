@@ -1,0 +1,16 @@
+---
+# vars file for desktop
+### package manager variables ###
+# yum
+yum_name: "*"
+yum_state: latest
+yum_enablerepo: "rhel-?-server-rpms,rhel-?-server-satellite-tools-6.?-rpms"
+yum_disablerepo: "*"
+yum_exclude: ""
+
+# dnf
+dnf_name: "*"
+dnf_state: latest
+dnf_enablerepo: "rhel-8-for-x86_64-appstream-rpms,rhel-8-for-x86_64-baseos-rpms,satellite-tools-6.?-for-rhel-8-x86_64-rpms"
+dnf_disablerepo: "*"
+dnf_exclude: ""

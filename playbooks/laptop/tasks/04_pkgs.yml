@@ -1,0 +1,63 @@
+---
+- name: "Updating cache before proceeding to package installation"
+  dnf:
+    update_cache: true
+
+- name: "Installing packages"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ common_packages }}"
+
+# language packs
+- name: "Installing lang packs"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ pkgs_lang }}"
+
+# font packages
+- name: "Installing fonts"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ pkgs_fonts }}"
+
+- name: "Installing Copr fonts"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ pkgs_fonts_copr }}"
+
+# gnome extensions
+- name: "Installing required deps for GNOME extensions"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ gnome_extension_deps }}"
+
+- name: "Installing GNOME extensions from official repos"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ gnome_extensions }}"
+
+# third-party software
+- name: "Installing third-party software"
+  dnf:
+    state: "{{ dnf_state }}"
+    name: "{{ item }}"
+  loop: "{{ pkgs_tp }}"
+  ignore_errors: true
+
+# flatpaks
+- name: "Updating flatpak repos' cache"
+  ansible.builtin.shell: flatpak update --appstream
+
+- name: "Installing flatpaks from flathub"
+  community.general.flatpak:
+    state: present
+    method: system
+    name: "{{ item }}"
+  loop: "{{ pkgs_flatpak }}"
+

@@ -1,0 +1,33 @@
+---
+# effectuate backups of important system files
+- name: "Backing up important files and sysconfs"
+  ansible.posix.synchronize:
+    src: "{{ item }}"
+    dest: "{{ bakdest }}"
+    delete: false
+    archive: false
+    group: false
+    links: false
+    recursive: true
+    rsync_opts:
+      - "--update"
+      - "--relative"
+      - "--exclude='Proton - Experimental'"
+      - "--exclude=SteamLinuxRuntime_soldier"
+      - "--exclude='Steamworks Shared'"
+      - "--exclude=from_git"
+      - "--exclude=venvs"
+    times: true
+  delegate_to: "{{ inventory_hostname }}"
+  loop: "{{ baksrc }}"
+  ignore_errors: true
+
+- name: "Backing up SSH keys"
+  ansible.posix.synchronize:
+    src: /home/{{ lookup('env', 'USER') }}/.ssh
+    dest: "{{ bakdest }}"
+    delete: false
+    rsync_opts:
+      - "--relative"
+  delegate_to: "{{ inventory_hostname }}"
+  ignore_errors: true

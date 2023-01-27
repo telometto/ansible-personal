@@ -1,0 +1,59 @@
+---
+# gnome tweaks
+- name: "Sorting layout of start menu"
+  ansible.builtin.shell: gsettings reset org.gnome.shell app-picker-layout
+
+- name: "Setting mouse sensitivity"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.peripherals.mouse speed -0.5
+
+- name: "Disabling mouse acceleration"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
+
+- name: "Enabling tap-to-click"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+- name: "Enabling battery percentage"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface show-battery-percentage true
+
+- name: "Sorting folders before files"
+  ansible.builtin.shell: gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+
+- name: "Enabling minimize and maximize buttons"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+
+- name: "Enabling calendar week numbers"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.calendar show-weekdate true
+
+- name: "Enabling weekday in clock"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface clock-show-weekday true
+
+- name: "Setting proxy to 'auto'"
+  ansible.builtin.shell: gsettings set org.gnome.system.proxy mode 'auto'
+
+- name: "Enabling night light"
+  ansible.builtin.shell: gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+
+- name: "Enabling automatic night light"
+  ansible.builtin.shell: gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
+
+- name: "Enabling automatic timezone"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.datetime automatic-timezone true
+
+- name: "Enabling dark mode"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
+- name: "Setting font antialiasing"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+
+- name: "Setting interface font (Ubuntu 11)"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface font-name 'Ubuntu 11'
+
+- name: "Setting document font (Ubuntu 11)"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface document-font-name 'Ubuntu 11'
+
+- name: "Setting monospace font (Fira Code 10)"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface monospace-font-name 'Fira Code 10'
+
+- name: "Setting global dark theme"
+  ansible.builtin.shell: gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+  when: ansible_facts['distribution_major_version'] > "35"

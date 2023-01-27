@@ -1,0 +1,113 @@
+# location was in 02_repos.yml
+- name: "Enabling the Flathub (beta) repo"
+  community.general.flatpak_remote:
+    name: flathub-beta
+    state: present
+    flatpakrepo_url: "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"
+
+# location was in 03_repos_ext.yml
+- name: "Checking if ProtonVPN repo exists"
+  ansible.builtin.stat:
+    path: /etc/yum.repos.d/{{ protonvpn_file }}.repo
+    get_checksum: false
+  register: p
+
+- name: "Importing ProtonVPN security keys and enabling repo"
+  yum_repository:
+    name: protonvpn-stable
+    description: "ProtonVPN official repo"
+    baseurl: https://protonvpn.com/download/
+    enabled: true
+    gpgcheck: true
+    gpgkey: "{{ protonvpn_keys }}"
+  when: p.stat.exists == False
+
+- name: "Downloading ProtonVPN"
+  dnf:
+    state: present
+    name: "https://protonvpn.com/download/protonvpn-stable-release-1.0.1-1.noarch.rpm"
+  when: p.stat.exists == False
+
+# location was in 04_pkgs.yml
+- name: "Installing flatpaks from Flathub (beta)"
+  community.general.flatpak:
+    remote: flathub-beta
+    state: present
+    method: system
+    name: "{{ item }}"
+  loop: "{{ pkgs_flatpak_beta }}"
+
+# location was in 06_github.yml
+# stylepak
+- name: "Checking if dir exists"
+  ansible.builtin.stat:
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/stylepak
+    get_checksum: false
+  register: p
+
+- name: "Cloning stylepak repo"
+  ansible.builtin.git:
+    repo: "https://github.com/refi64/stylepak"
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/stylepak
+  when: p.stat.exists == False
+
+# location was in 08_post.yml
+- name: "Enabling fstrim"
+  ansible.builtin.systemd:
+    name: fstrim.timer
+    enabled: true
+  become: true
+
+- name: "Creating mount dir"
+  ansible.builtin.file:
+    path: /mnt/backups
+    state: directory
+    mode: "{{ permissions }}"
+  become: true
+  when: p.stat.exists == False
+
+# DO NOT UNCOMMENT UNLESS YOU JUST WANT A TEMP MNTDIR
+- name: "Mounting network share"
+  ansible.posix.mount:
+    src: "{{ mynfs }}"
+    path: "{{ mountpoint }}"
+    fstype: nfs
+    opts: "{{ myopts }}"
+    state: mounted
+  ignore_errors: true
+  become: true
+
+
+ automounts nfs
+- name: "Creating fstab entry for NFS"
+  blockinfile:
+    path: "{{ fstab }}"
+    state: present
+    block: |
+      192.168.0.102:/hspool/encrypted/backups   /mnt/backups            nfs     defaults 0 0
+  ignore_errors: true
+  become: true
+
+- name: "Syncing dotfiles"
+  ansible.posix.synchronize:
+    src: /mnt/backups/nymappe/home/zeno/
+    dest: "{{ hpath }}"
+    delete: false
+    rsync_opts:
+      - "--exclude=Documents"
+      - "--exclude=Downloads"
+      - "--exclude=.local"
+      - "--exclude=Music"
+      - "--exclude=Pictures"
+      - "--exclude=.var"
+      - "--exclude=Videos"
+  delegate_to: "{{ inventory_hostname }}"
+  ignore_errors: true
+  become: true
+
+- name: "Transferring SSH keys"
+  ansible.posix.synchronize:
+    src: /mnt/backups/nymappe/home/zeno/.ssh
+    dest: /home/zeno
+    delete: false
+  delegate_to: "{{ inventory_hostname }}"

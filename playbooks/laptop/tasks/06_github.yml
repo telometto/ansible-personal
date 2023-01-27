@@ -1,0 +1,60 @@
+---
+- name: "Checking if sdkman exists"
+  ansible.builtin.stat:
+    path: /home/{{ lookup('env', 'USER') }}/.sdkman
+    get_checksum: false
+  register: p
+
+- name: "Installing sdkman"
+  ansible.builtin.shell: curl -s "https://get.sdkman.io" | bash
+  when: p.stat.exists == False
+
+# create folders to contain git repos
+- name: "Creating folder for git repos"
+  ansible.builtin.file:
+    state: directory
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+
+# ble.sh
+- name: "Checking if dir exists"
+  ansible.builtin.stat:
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+    get_checksum: false
+  register: p
+
+- name: "Cloning ble.sh repo"
+  ansible.builtin.git:
+    repo: "https://github.com/akinomyoga/ble.sh.git"
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+  when: p.stat.exists == False
+
+- name: "Building and installing ble.sh"
+  community.general.make:
+    chdir: /home/{{ lookup('env', 'USER') }}/Documents/from_git/ble.sh
+    target: install
+    params: PREFIX=/home/{{ lookup('env', 'USER') }}/.local
+  when: p.stat.exists == False
+
+- name: "Sourcing ble.sh to .bashrc"
+  ansible.builtin.shell: echo 'source ~/.local/share/blesh/ble.sh' >> ~/.bashrc
+  when: p.stat.exists == false
+
+# Only needed with GNOME
+# gnome-dash-fix
+- name: "Checking if dir exists"
+  ansible.builtin.stat:
+    path: /home/{{ lookup('env', 'USER') }}/Documents/from_git/gnome-dash-fix
+    get_checksum: false
+  register: p
+
+- name: "Cloning gnome-dash-fix repo"
+  ansible.builtin.git:
+    repo: "https://github.com/telometto/gnome-dash-fix.git"
+    dest: /home/{{ lookup('env', 'USER') }}/Documents/from_git/gnome-dash-fix
+  when: p.stat.exists == False
+
+- name: "chmodding gnome-dash-fix"
+  ansible.builtin.shell: chmod +x /home/{{ lookup('env', 'USER') }}/Documents/from_git/gnome-dash-fix/interactive.py
+

@@ -1,0 +1,24 @@
+---
+# user's home path
+hpath: /home/"{{ lookup('env', 'USER') }}"/
+
+# network sharing vars
+fstab: "/etc/fstab"
+mynfs: "192.168.0.102:/ccpool/encrypted/backups"
+mountpoint: "/mnt/backups"
+permissions: "0755"
+myopts: "rw,sync"
+
+# rsync vars
+baksrc:
+  - /home/{{ lookup('env', 'USER') }}/Documents
+
+bakdest: /mnt/backups/bkpfolder
+
+excludes:
+  - /home/{{ lookup('env', 'USER') }}/.var/app/com.valvesoftware.Steam/data/Steam/'Proton - Experimental'
+  - /home/{{ lookup('env', 'USER') }}/.var/app/com.valvesoftware.Steam/data/Steam/SteamLinuxRuntime_soldier
+  - /home/{{ lookup('env', 'USER') }}/.var/app/com.valvesoftware.Steam/data/Steam/'Steamworks Shared'
+
+games:
+  - "/mnt/backups/bkpfolder/home/zeno/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/'Counter-Strike Global Offensive'"

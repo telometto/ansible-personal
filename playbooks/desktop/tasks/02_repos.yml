@@ -1,0 +1,52 @@
+---
+### Third-party repos
+# Official
+- name: "Enabling third-party repos"
+  dnf:
+    state: latest
+    name: fedora-workstation-repositories
+  when: ansible_facts['distribution_major_version'] >= "35"
+
+### RPM Fusion repos
+# Security keys
+- name: "Importing third-party security keys"
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ item }}"
+  loop: "{{ rpm_fusion_keys }}"
+
+- name: "Enabling RPM fusion repo(s)"
+  dnf:
+    state: latest
+    name: "{{ item }}"
+  loop: "{{ rpm_fusion_urls }}"
+  when: ansible_facts['distribution'] == "Fedora"
+
+### Copr repos
+- name: "Enabling copr repo(s)"
+  community.general.copr:
+    state: enabled
+    host: copr.fedorainfracloud.org
+    name: "{{ item }}"
+  loop: "{{ copr_list }}"
+  when: ansible_facts['distribution'] == "Fedora"
+
+### Flathub repos
+- name: "Enabling the Flathub repo"
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
+  ignore_errors: true
+
+# Only needed with GNOME
+- name: "Enabling the GNOME Flatpak repo"
+  community.general.flatpak_remote:
+    name: gnome
+    state: present
+    flatpakrepo_url: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+
+# unneeded if using kde
+- name: "Removing filters from Flathub repo"
+  ansible.builtin.shell: flatpak remote-modify --no-filter flathub && flatpak update --appstream
+  when: ansible_facts['distribution'] == "Fedora" and ansible_facts['distribution_major_version'] >= "35"

@@ -1,0 +1,20 @@
+# IP address to machine where you are going to execute your play
+[desktop]
+192.168.0.103
+
+[laptop]
+192.168.0.104
+#100.64.46.1
+192.168.10.154
+
+[homeserver]
+192.168.0.102
+
+# testing
+[vmfedora]
+192.168.122.105
+
+[vmraspi]
+
+[linode]
+0.0.0.0

@@ -1,0 +1,16 @@
+---
+- name: "Checking if VS Code repo exists"
+  ansible.builtin.stat:
+    path: /etc/yum.repos.d/{{ vscode_file }}.repo
+    get_checksum: false
+  register: p
+
+- name: "Importing Visual Studio security keys and enabling repo"
+  yum_repository:
+    name: vscode
+    description: "VS Code official repo"
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: true
+    gpgcheck: true
+    gpgkey: "{{ microsoft_keys }}"
+  when: p.stat.exists == False

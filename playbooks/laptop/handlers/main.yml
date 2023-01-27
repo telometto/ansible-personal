@@ -1,0 +1,31 @@
+---
+# handlers file for desktop
+- name: "Starting SSH"
+  ansible.builtin.systemd:
+    name: sshd
+    state: started
+  become: true
+
+- name: "Enabling SSH"
+  ansible.builtin.systemd:
+    name: sshd
+    enabled: true
+  become: true
+
+- name: "Enabling libvirtd"
+  ansible.builtin.systemd:
+    name: virtnetworkd
+    enabled: true
+  become: true
+
+- name: "Enabling fstrim"
+  ansible.builtin.systemd:
+    name: fstrim.timer
+    enabled: true
+  become: true
+
+- name: "Enabling rngd"
+  ansible.builtin.systemd:
+    name: rngd
+    enabled: true
+  become: true

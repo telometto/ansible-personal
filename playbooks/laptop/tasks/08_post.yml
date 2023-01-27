@@ -1,0 +1,23 @@
+---
+- name: "Creating snapper config"
+  ansible.builtin.shell: sudo snapper -c root create-config /
+  ignore_errors: true
+  become: true
+
+- name: "Changing machine name"
+  ansible.builtin.hostname:
+    name: stinkpad
+  become: true
+
+- name: "Cleaning up..."
+  dnf:
+    autoremove: true
+  become: true
+
+- name: "Rebooting machine"
+  ansible.builtin.reboot:
+    msg: "Rebooting machine. Ansible finished."
+    pre_reboot_delay: 300
+    post_reboot_delay: 60
+    test_command: "whoami"
+  become: true
