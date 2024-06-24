@@ -1,8 +1,0 @@
----
-copr_host:
-  - copr.fedorainfracloud.org
-
-copr_list:
-  - dawid/better_fonts
-  - zawertun/hack-fonts
-  - xxmitsu/mesa-git

@@ -1,0 +1,8 @@
+---
+- name: "Setting fastest mirror and max parallel downloads for DNF"
+  blockinfile:
+    path: "/etc/dnf/dnf.conf"
+    state: "present"
+    block: |
+      max_parallel_downloads=10
+      fastestmirror=True

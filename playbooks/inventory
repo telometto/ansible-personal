@@ -1,20 +1,17 @@
-# IP address to machine where you are going to execute your play
+# IP address to the machine(s) where you are going to execute the play
 [desktop]
-192.168.0.103
+desktop.home.arpa
+#192.168.2.101
 
 [laptop]
-192.168.0.104
-#100.64.46.1
-192.168.10.154
+laptop.home.arpa
+192.168.2.239
 
-[homeserver]
-192.168.0.102
+[server]
+server.home.arpa
+192.168.1.100
 
-# testing
-[vmfedora]
-192.168.122.105
-
-[vmraspi]
-
-[linode]
-0.0.0.0
+# testing (e.g. VMs)
+[testing]
+#192.168.124.129
+192.168.124.28

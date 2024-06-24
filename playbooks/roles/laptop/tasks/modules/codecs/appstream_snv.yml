@@ -1,0 +1,7 @@
+---
+- name: "Installing AppStream metadata and 'sound and video' codecs"
+  package:
+    name:
+      - "@core"
+      - "@sound-and-video"
+    state: "present"

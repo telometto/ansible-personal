@@ -1,9 +1,0 @@
----
-pkgs_pip:
-  - wheel
-
-pip_venv:
-  - yt-dlp
-  - ansible
-  - shreddit
-  - organize

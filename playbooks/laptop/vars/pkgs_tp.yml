@@ -1,9 +1,0 @@
----
-pkgs_tp:
-  - dnf-plugins-core # required for brave
-  - libappindicator-gtk3 # required for protonvpn
-  - gnome-shell-extension-appindicator # required for protonvpn
-  - gnome-tweaks # required for protonvpn
-  - brave-browser
-  - code
-

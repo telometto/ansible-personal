@@ -1,0 +1,7 @@
+---
+- name: "Enabling the Flathub repo (user)"
+  community.general.flatpak_remote:
+    name: "flathub"
+    state: "present"
+    method: "user"
+    flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"

@@ -1,0 +1,8 @@
+---
+- name: "Installing hardware acceleration codecs"
+  package:
+    update_cache: true
+    name:
+      - "intel-media-driver"
+      - "nvidia-vaapi-driver"
+    state: "latest"

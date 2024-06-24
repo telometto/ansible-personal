@@ -1,0 +1,8 @@
+---
+- name: "Installing flatpaks from Flathub (system-wide)"
+  community.general.flatpak:
+    state: "present"
+    method: "system"
+    remote: "flathub"
+    name: "{{ item }}"
+  with_items: "{{ pkgs_flatpak.values() | flatten }}"

@@ -1,0 +1,7 @@
+---
+- name: "Installing packages"
+  package:
+    update_cache: true
+    state: "latest"
+    name: "{{ item }}"
+  with_items: "{{ pkgs_dnf.values() | flatten }}"

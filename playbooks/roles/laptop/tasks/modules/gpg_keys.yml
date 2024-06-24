@@ -1,0 +1,6 @@
+---
+- name: "Importing repo security keys"
+  rpm_key:
+    key: "{{ item }}"
+    state: "present"
+  with_items: "{{ gpg_keys }}"

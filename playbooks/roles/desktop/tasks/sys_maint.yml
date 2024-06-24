@@ -1,0 +1,42 @@
+---
+# post
+- name: "System configuration: 2/2"
+  block:
+    - name: "Cleaning up system"
+      package:
+        autoremove: true
+      become: true
+
+    #- name: "GNOME Settings"
+    #  import_tasks: "modules/gnome_settings.yml"
+    #  become: false
+    
+    - name: "Change machine name"
+      hostname:
+        name: "stinkpad"
+      become: true
+
+    - name: "Create snapper config"
+      command: "sudo snapper -c root create-config /"
+      become: true
+      ignore_errors: true # This should be left as-is, since the play will stop if it has already been created
+
+    #- name: "Checking if the system needs to be rebooted"
+    #  command: "needs-restarting -r"
+    #  register: result
+    #  become: false
+    #
+    #- name: "Displaying results"
+    #  debug:
+    #    var: result.rc
+    #  become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+      #when: result.rc == 1
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+      #when: result.rc == 1
+      become: true

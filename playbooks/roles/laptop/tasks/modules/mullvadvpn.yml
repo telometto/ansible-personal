@@ -1,0 +1,8 @@
+---
+# approved
+- name: "Downloading and installing Mullvad RPM"
+  ansible.builtin.dnf:
+    name: "https://mullvad.net/media/app/MullvadVPN-2023.3_x86_64.rpm"
+    state: present
+    disable_gpg_check: true
+  become: true

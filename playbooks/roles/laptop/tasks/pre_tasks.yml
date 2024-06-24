@@ -1,0 +1,62 @@
+---
+# pre-task
+- name: "Set up repos and update packages"
+  block:
+    - name: "Ensuring that SSH is enabled"
+      systemd:
+        name: "sshd"
+        enabled: true
+      become: true
+
+    - import_tasks: "modules/dnf_settings.yml"
+      become: true
+
+    - import_tasks: "modules/update_system.yml"
+      register: package_out
+      failed_when: package_out is failed
+      become: true
+
+      # If dnf-utils isn't installed, needs-restarting will not work.
+    - name: "Installing dnf-utils"
+      package:
+        update_cache: false
+        state: "latest"
+        name: "dnf-utils"
+      become: true
+
+    - name: "Checking if the system needs to be rebooted"
+      command: "needs-restarting -r"
+      register: result
+      become: false
+
+    - name: "Displaying results"
+      debug:
+        var: result.rc
+      become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+      when: result.rc == 1
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+      when: result.rc == 1
+      become: true
+
+    - import_tasks: "modules/gpg_keys.yml"
+      become: true
+
+    - import_tasks: "modules/enable_repos.yml"
+      become: true
+
+    - import_tasks: "modules/enable_copr.yml"
+      become: true
+
+    - import_tasks: "modules/enable_flathub_user.yml"
+      failed_when: false
+      become: false
+
+    - import_tasks: "modules/enable_flathub_system.yml"
+      failed_when: false
+      become: true

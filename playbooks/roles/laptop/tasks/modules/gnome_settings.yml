@@ -1,0 +1,120 @@
+# Enable this module in sys_maint.yml to set up GNOME
+---
+- name: "Sorting layout of start menu"
+  command: gsettings reset org.gnome.shell app-picker-layout
+
+- name: "Checking mouse sensitivity"
+  command: gsettings get org.gnome.desktop.peripherals.mouse speed
+  register: output
+
+- name: "Setting mouse sensitivity"
+  command: gsettings set org.gnome.desktop.peripherals.mouse speed -0.3
+  when: output.stdout != -0.3
+
+- name: "Checking mouse acceleration"
+  command: gsettings get org.gnome.desktop.peripherals.mouse accel-profile
+  register: output
+
+- name: "Disabling mouse acceleration"
+  command: gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
+  when: output.stdout != 'flat'
+
+- name: "Checking sort order for file manager"
+  command: gsettings get org.gtk.Settings.FileChooser sort-directories-first
+  register: output
+
+- name: "Sorting folders before files"
+  command: gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+  when: output.stdout != true
+
+- name: "Checking if minimize and maximize buttons are enabled"
+  command: gsettings get org.gnome.desktop.wm.preferences button-layout
+  register: output
+
+- name: "Enabling minimize and maximize buttons"
+  command: gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+  when: output.stdout != 'appmenu:minimize,maximize,close'
+
+- name: "Checking if calendar week numbers are enabled"
+  command: gsettings get org.gnome.desktop.calendar show-weekdate
+  register: output
+
+- name: "Enabling calendar week numbers"
+  command: gsettings set org.gnome.desktop.calendar show-weekdate true
+  when: output.stdout != true
+
+- name: "Checking if weekday shows in clock"
+  command: gsettings get org.gnome.desktop.interface clock-show-weekday
+  register: output
+
+- name: "Enabling weekday in clock"
+  command: gsettings set org.gnome.desktop.interface clock-show-weekday true
+  when: output.stdout != true
+
+- name: "Checking proxy settings"
+  command: gsettings get org.gnome.system.proxy mode
+  register: output
+
+- name: "Setting proxy to 'auto'"
+  command: gsettings set org.gnome.system.proxy mode 'auto'
+  when: output.stdout != 'auto'
+
+- name: "Checking if night light is enabled"
+  command: gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled
+  register: output
+
+- name: "Enabling night light"
+  command: gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+  when: output.stdout != true
+
+- name: "Checking if automatic timezone is enabled"
+  command: gsettings get org.gnome.desktop.datetime automatic-timezone
+  register: output
+
+- name: "Enabling automatic timezone"
+  command: gsettings set org.gnome.desktop.datetime automatic-timezone true
+  when: output.stdout != true
+
+- name: "Checking if dark mode is enabled"
+  command: gsettings get org.gnome.desktop.interface gtk-theme
+  register: output
+
+- name: "Enabling dark mode"
+  command: gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+  when: output.stdout != 'Adwaita-dark'
+
+- name: "Checking font antialiasing settings"
+  command: gsettings get org.gnome.desktop.interface font-antialiasing
+  register: output
+
+- name: "Setting font antialiasing"
+  command: gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+  when: output.stdout != 'rgba'
+
+#- name: "Checking font settings"
+#  command: gsettings get org.gnome.desktop.interface font-name
+#  register: output
+#
+#- name: "Setting interface font (Ubuntu 11)"
+#  command: gsettings set org.gnome.desktop.interface font-name 'Ubuntu 11'
+#  when: output.stdout != 'Ubuntu 11'
+#
+#- name: "Setting document font (Ubuntu 11)"
+#  command: gsettings set org.gnome.desktop.interface document-font-name 'Ubuntu 11'
+#  when: output.stdout != 'Ubuntu 11'
+#
+#- name: "Checking (monospace) font"
+#  command: gsettings get org.gnome.desktop.interface monospace-font-name
+#  register: output
+#
+#- name: "Setting monospace font (Cascadia Code 10)"
+#  command: gsettings set org.gnome.desktop.interface monospace-font-name 'Cascadia Code 10'
+#  when: output.stdout != 'Cascadia Code 10'
+#
+- name: "Checking theme"
+  command: gsettings get org.gnome.desktop.interface color-scheme
+  register: output
+
+- name: "Setting global dark theme"
+  command: gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+  when: output.stdout != 'prefer-dark' and ansible_facts['distribution_major_version'] > "35"

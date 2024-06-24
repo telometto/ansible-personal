@@ -1,0 +1,5 @@
+---
+- name: "Ensuring that SSH is enabled"
+  systemd:
+    name: "sshd"
+    enabled: true

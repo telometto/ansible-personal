@@ -1,0 +1,18 @@
+---
+- name: "Logging in to Docker Hub"
+  containers.podman.podman_login:
+    username: "{{ DOCKERHUB_USER }}"
+    password: "{{ DOCKERHUB_PW }}"
+    registry: "docker.io"
+
+- name: "Logging in to Red Hat registry"
+  containers.podman.podman_login:
+    username: "{{ REDHAT_USER }}"
+    password: "{{ REDHAT_PW }}"
+    registry: "registry.access.redhat.com"
+
+- name: "Logging in to Fedora registry"
+  containers.podman.podman_login:
+    username: "{{ FEDORA_USER }}"
+    password: "{{ FEDORA_PW }}"
+    registry: "registry.fedoraproject.org"

@@ -1,0 +1,9 @@
+---
+- name: "Setting default XDG dirs"
+  command: "{{ item }}"
+  with_items:
+    - "xdg-user-dirs-update --set DOWNLOAD /mnt/personal/Downloads"
+    - "xdg-user-dirs-update --set DOCUMENTS /mnt/personal/Documents"
+    - "xdg-user-dirs-update --set MUSIC /mnt/personal/Music"
+    - "xdg-user-dirs-update --set PICTURES /mnt/personal/Pictures"
+    - "xdg-user-dirs-update --set VIDEOS /mnt/personal/Videos"

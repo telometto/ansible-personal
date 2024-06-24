@@ -1,0 +1,5 @@
+---
+- name: "Enabling libvirtd"
+  systemd:
+    name: "virtnetworkd"
+    enabled: true

@@ -1,0 +1,7 @@
+---
+- name: "Enabling COPR repos"
+  community.general.copr:
+    host: "copr.fedorainfracloud.org"
+    name: "{{ item }}"
+    state: "enabled"
+  with_items: "{{ copr_repos }}"

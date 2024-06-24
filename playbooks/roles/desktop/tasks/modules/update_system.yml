@@ -1,0 +1,6 @@
+---
+- name: "Updating the system"
+  package:
+    update_cache: true
+    name: "*"
+    state: "latest"

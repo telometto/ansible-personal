@@ -1,0 +1,9 @@
+---
+- name: "Setting up hardware encoding"
+  command: "{{ item }}"
+  with_items:
+    - "sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing"
+    - "sudo dnf swap -y mesa-va-drivers mesa-va-drivers-freeworld"
+    - "sudo dnf swap -y mesa-vdpau-drivers mesa-vdpau-drivers-freeworld"
+    - "sudo dnf swap -y mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686"
+    - "sudo dnf swap -y mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686"

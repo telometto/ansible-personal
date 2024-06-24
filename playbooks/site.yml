@@ -1,37 +1,24 @@
 ---
 # site.yml
-## desktop
 - name: "Deploy system"
-  hosts: desktop
+  hosts: "desktop"
+  ignore_errors: true
   vars_files:
-    - desktop/vars/list_file.yml
-    - desktop/vars/list_key.yml
-    - desktop/vars/main.yml
-    - desktop/vars/pkgs_com.yml
-    - desktop/vars/pkgs_flatpak.yml
-    - desktop/vars/pkgs_opt.yml
-    - desktop/vars/pkgs_pip.yml
-    - desktop/vars/pkgs_tp.yml
-    - desktop/vars/repos_copr.yml
-    - desktop/vars/repos_rpm_fusion.yml
-    - desktop/vars/paths.yml
+    - "desktop/vars/main.yml"
+    - ".env"
+
+  pre_tasks:
+    - name: "Please check if the (remote) username is correct"
+      ansible.builtin.pause:
+        prompt: |
+          Is the (remote) username "{{ ansible_user_id }}" correct?
+          If it isn't, please abort.
+
+          -> Press RETURN to continue.
+          -> Press Ctrl+c and then "a" to abort.
+
+    - name: "Set up HW acceleration"
+      import_tasks: "roles/desktop/tasks/pre_tasks.yml"
+
   roles:
-    - role: desktop
-#
-## laptop
-#- name: "Deploying system"
-#  hosts: laptop
-#  vars_files:
-#    - laptop/vars/list_file.yml
-#    - laptop/vars/list_key.yml
-#    - laptop/vars/main.yml
-#    - laptop/vars/paths.yml
-#    - laptop/vars/pkgs_com.yml
-#    - laptop/vars/pkgs_flatpak.yml
-#    - laptop/vars/pkgs_opt.yml
-#    - laptop/vars/pkgs_pip.yml
-#    - laptop/vars/pkgs_tp.yml
-#    - laptop/vars/repos_copr.yml
-#    - laptop/vars/repos_rpm_fusion.yml
-#  roles:
-#    - role: laptop
+    - "desktop"

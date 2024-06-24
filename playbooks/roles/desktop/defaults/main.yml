@@ -1,0 +1,23 @@
+---
+# defaults file for desktop
+copr_repos:
+  - "dawid/better_fonts"
+  - "zawertun/hack-fonts"
+  - "arrobbins/JDSP4Linux"
+  #- xxmitsu/mesa-git
+
+repos:
+  - "fedora-workstation-repositories" # enable third-party repos
+  - "fedora-repos-archive" # to enable 'dnf history undo'
+  - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+  - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+  - "rpmfusion-free-release-tainted" # FLOSS packages where some usages might be restricted in some countries
+  - "rpmfusion-nonfree-release-tainted" # non-FLOSS packages without a clear redistribution status
+
+gpg_keys:
+  - "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
+  - "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
+  - "https://packages.microsoft.com/keys/microsoft.asc"
+
+tailscale_gpg_keys:
+  - "https://pkgs.tailscale.com/stable/fedora/repo.gpg"

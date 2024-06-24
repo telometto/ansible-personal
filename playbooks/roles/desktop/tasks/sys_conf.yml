@@ -1,0 +1,46 @@
+---
+# first main task
+- name: "System configuration: 1/2"
+  block:
+    # For Nvidia
+    #- import_tasks: "modules/nvidia/nvidia_enc.yml"
+    #  become: true
+
+    # For AMD
+    - import_tasks: "modules/amd/amd_enc.yml"
+      become: true
+
+    - import_tasks: "modules/codecs/appstream_snv.yml"
+      become: true
+
+    - import_tasks: "modules/codecs/multimedia.yml"
+      become: true
+
+    - import_tasks: "modules/update_system.yml"
+      register: package_out
+      failed_when: package_out is failed
+      become: true
+
+    # For Nvidia and Intel
+    #- import_tasks: "modules/nvidia/nvidia_accel.yml"
+    #  become: true
+
+    - name: "Checking if the system needs to be rebooted"
+      command: "needs-restarting -r"
+      register: result
+      become: false
+
+    - name: "Displaying results"
+      debug:
+        var: result.rc
+      become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+      when: result.rc == 1
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+      when: result.rc == 1
+      become: true

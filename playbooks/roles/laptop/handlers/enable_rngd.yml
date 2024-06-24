@@ -1,0 +1,5 @@
+---
+- name: "Enabling rngd"
+  systemd:
+    name: "rngd"
+    enabled: true

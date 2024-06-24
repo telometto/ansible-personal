@@ -1,0 +1,7 @@
+---
+- name: "Installing multimedia codecs"
+  package:
+    name: "@multimedia"
+    state: "present"
+    install_weak_deps: False
+    exclude: "PackageKit-gstreamer-plugin"

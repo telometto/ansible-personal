@@ -1,0 +1,7 @@
+---
+# tasks file for desktop
+- import_tasks: "sys_conf.yml"
+
+- import_tasks: "app_install.yml"
+
+- import_tasks: "sys_maint.yml"

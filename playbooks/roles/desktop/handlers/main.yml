@@ -1,0 +1,13 @@
+---
+# handlers file for desktop
+- import_tasks: enable_ssh.yml
+  become: true
+
+- import_tasks: enable_rngd.yml
+  become: true
+
+- import_tasks: enable_fstrim.yml
+  become: true
+
+- import_tasks: enable_virtnetworkd.yml
+  become: true

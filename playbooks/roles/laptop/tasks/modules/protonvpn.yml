@@ -1,0 +1,31 @@
+---
+# [DEPRECATED] Installed as a Flatpak instead
+- name: "Importing ProtonVPN security keys"
+  ansible.builtin.rpm_key:
+    state: present
+    key: "https://repo.protonvpn.com/debian/public_key.asc"
+  become: true
+
+- name: "Downloading and installing Proton RPM"
+  ansible.builtin.dnf:
+    name: "https://repo.protonvpn.com/fedora-36-stable/release-packages/protonvpn-stable-release-1.0.1-1.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+  become: true
+
+- name: "Installing required packages for ProtonVPN"
+  ansible.builtin.dnf:
+    name:
+      - "python3-pip"
+      - "libappindicator-gtk3"
+      - "gnome-tweaks"
+      - "gnome-shell-extension-appindicator"
+      - "protonvpn"
+    state: latest
+  become: true
+
+- name: "Installing required pip dep for ProtonVPN"
+  ansible.builtin.pip:
+    name: "dnspython>=1.16.0"
+    extra_args: --user
+  become: false

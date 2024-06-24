@@ -1,0 +1,177 @@
+---
+# vars file for desktop
+pkgs_dnf:
+  development:
+    - "cmake" # Cross-platform makefile generator
+    - "autoconf" # Framework for generating configure scripts
+    - "automake" # Tool for automatically generating Makefile.in files
+    - "clang" # C, C++, and Objective-C compiler
+    - "bat" # A cat clone with syntax highlighting
+    - "git" # Version control
+    - "micro" # Modern and intuitive terminal-based text editor
+    - "xclip" # Command line interface to X selections
+    - "ShellCheck" # Shell script analysis tool
+    - "prename" # A renaming tool
+    - "fd-find" # Simple, fast and user-friendly alternative to 'find'
+    - "fzf" # Command-line fuzzy finder
+    - "zsh" # Powerful shell with scripting language
+    - "exa" # Modern replacement for 'ls'
+
+  python_tools:
+    - "python3-pip" # Package installer for Python
+    - "python3-virtualenv" # Tool to create isolated Python environments
+    - "python3-dnf-plugin-snapper" # DNF plugin for integrating with Snapper
+
+  system_utilities:
+    #- "JamesDSP" # [Changed for Flatpak version] Audio processing suite with a variety of effects
+    - "bpytop" # Resource monitor that shows usage and stats
+    - "cronie" # Daemon to execute scheduled commands
+    - "gparted" # Graphical partition editor
+    - "lm_sensors" # Hardware monitoring
+    - "neofetch" # System information tool
+    - "rpm-cron" # Execute RPM package scripts with cron
+    - "variety" # Wallpaper changer
+    - "bridge-utils" # Utilities for configuring Ethernet bridges
+    - "pipx" # Install and run Python applications in isolated environments
+    - "snapper" # Tool for filesystem snapshot management
+    - "toolbox" # Tool for containerized command line environments
+    - "toolbox-experience" # Enhanced toolbox experience
+    - "util-linux-user" # Miscellaneous system utilities for Linux (user related)
+    - "autojump-zsh" # cd command that learns - easily navigate directories
+    - "syncthing" # Continuous file synchronization program
+    - "distrobox" # Use any Linux distribution inside your terminal
+    - "p7zip" # High compression file archiver
+    - "p7zip-plugins" # Plugins for p7zip
+    - "rng-tools" # Random number generator related utilities
+    - "plymouth-theme-solar" # Graphical boot animation (solar theme)
+    - "dnf-utils"
+
+  virtualization:
+    - "libvirt" # Toolkit to interact with virtualization capabilities
+    - "libvirt-client" # Client-side APIs and utilities for libvirt
+    - "virt-install" # Command line tool to create virtual machines
+    - "qemu-kvm" # QEMU Full virtualization on x86 hardware
+    - "libvirt-devel" # Libraries and header files for libvirt application development
+    - "virt-top" # Utility like top for displaying virtualization stats
+    - "libguestfs-tools" # Tools for accessing and modifying virtual machine disk images
+    - "virt-manager" # Desktop user interface for managing virtual machines
+    - "libvirt-daemon-config-network" # Network configuration support for libvirt daemon
+
+  containerization:
+    - "podman" # Tool for managing OCI containers and pods
+    - "podman-compose" # Script to help using podman with docker-compose files
+    - "podman-docker" # Emulate Docker CLI using podman
+    - "podman-plugins" # Plugins for Podman
+    - "podman-tests" # Test suite for Podman
+    - "podman-tui" # Terminal UI for managing pods and containers
+    - "python3-podman" # Python bindings for Podman
+    - "containers-common-extra" # Extra files shared between containers
+    - "distribution-gpg-keys" # GPG keys of various Linux distributions
+    - "distribution-gpg-keys-copr" # GPG keys for COPR repositories
+
+  fonts:
+    - "cascadia-fonts-all" # Cascadia Code font family
+    - "fira-code-fonts" # Monospaced font with programming ligatures
+    - "levien-inconsolata-fonts" # Humanist monospaced font
+    - "terminus-fonts" # Clean, fixed-width font
+    - "google-arimo-fonts" # Crisp and modern sans-serif design
+    - "google-droid-fonts-all" # Droid font family
+    - "google-noto-sans-runic-fonts" # Noto Sans Runic, part of Google’s Noto font family
+    - "google-roboto-fonts" # Roboto font family
+    - "google-rubik-fonts" # Rubik font family
+    - "ibm-plex-fonts-all" # IBM Plex font family
+    - "lato-fonts" # Lato font family
+    - "overpass-fonts" # Overpass open source web font family
+
+  desktop_environment:
+    - "gnome-icon-theme" # Icon theme for GNOME
+    - "gnome-themes-extra" # Extra themes for GNOME
+    - "xdg-desktop-portal" # Desktop integration portal
+    - "xdg-desktop-portal-devel" # Development files for xdg-desktop-portal
+    - "xdg-desktop-portal-gnome" # GNOME backend for xdg-desktop-portal
+    - "xdg-desktop-portal-wlr" # xdg-desktop-portal backend for wlroots
+    - "yaru-icon-theme" # Yaru icon theme for GNOME
+    - "yaru-gtk4-theme" # Yaru GTK+ theme for GNOME
+    - "heif-pixbuf-loader" # HEIF image loader for GTK+ applications
+    #- "gnome-tweaks" # Customize advanced GNOME 3 options
+
+  localization:
+    - "langpacks-it" # Italian language support
+    - "langpacks-nb" # Norwegian Bokmål language support
+    - "libreoffice-langpack-it" # Italian language pack for LibreOffice
+    - "libreoffice-langpack-nb" # Norwegian Bokmål language pack for LibreOffice
+
+  development_tools:
+    - "dnf-plugins-core" # Core plugins for DNF
+
+  gaming:
+    - "steam-devices" # udev rules for game controllers with Steam
+
+pkgs_flatpak:
+  communication_apps:
+    - "ch.protonmail.protonmail-bridge" # Email bridge for ProtonMail
+    - "com.discordapp.Discord" # Voice and text chat app
+    - "com.teamspeak.TeamSpeak" # Online voice communication software
+    - "im.riot.Riot" # Messaging app for team collaboration
+    - "org.gnome.Evolution" # Personal information management application
+    - "org.telegram.desktop" # Telegram Desktop messaging app
+    - "us.zoom.Zoom" # Video conferencing and web conferencing service
+
+  productivity_tools:
+    - "com.github.tchx84.Flatseal" # Permissions manager for Flatpak
+    - "eu.scarpetta.PDFMixTool" # PDF file modifier
+    - "org.gnome.DejaDup" # Backup tool
+    - "io.dbeaver.DBeaverCommunity" # Universal database tool
+    - "com.brave.Browser" # Web browser focused on privacy
+    - "fr.romainvigier.MetadataCleaner" # Tool for cleaning metadata from files
+    - "org.gnome.Todo" # To-do list application
+    - "com.google.AndroidStudio" # Integrated development environment for Android
+    - "com.obsproject.Studio" # Software for video recording and live streaming
+    - "org.gnome.meld" # Visual diff and merge tool
+    - "io.podman_desktop.PodmanDesktop" # GUI for managing Podman containers
+    - "com.borgbase.Vorta" # Backup client
+    - "com.usebottles.bottles" # Easily manage Windows software on Linux
+    - "io.freetubeapp.FreeTube" # YouTube client focusing on privacy
+    - "com.mongodb.Compass" # GUI for MongoDB
+    - "fr.free.Homebank" # Personal accounting software
+    - "com.protonvpn.www" # VPN service provider
+    - "com.github.maoschanz.drawing" # Simple drawing application
+    - "com.heroicgameslauncher.hgl" # Game launcher for Epic Games Store and GOG
+    - "io.github.peazip.PeaZip" # File archiver utility
+    - "io.github.wereturtle.ghostwriter" # Distraction-free Markdown editor
+    - "org.gnome.Extensions" # GNOME Shell extensions manager
+    - "org.onlyoffice.desktopeditors" # Office suite
+
+  gaming_utilities:
+    - "com.valvesoftware.Steam" # Digital distribution platform
+    - "com.valvesoftware.Steam.CompatibilityTool.Boxtron" # Steam Play compatibility tool for DOS games
+    - "com.valvesoftware.Steam.CompatibilityTool.Proton" # Steam Play compatibility tool for Windows games
+    - "com.valvesoftware.Steam.CompatibilityTool.Proton-GE" # Community-made version of Proton
+    - "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08" # Gamescope Vulkan layer
+    - "com.valvesoftware.Steam.Utility.steamtinkerlaunch" # Launcher for Steam applications
+    - "net.lutris.Lutris" # Open gaming platform
+    - "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08" # Vulkan post-processing layer
+    - "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08" # Vulkan overlay layer
+    - "com.github.Matoking.protontricks" # Helper for running Wine/Proton configuration scripts
+    - "io.github.libvibrant.vibrantLinux" # Tool to sync RGB lighting with games
+    - "com.valvesoftware.Steam.Utility.thcrap_steam_proton_wrapper" # Compatibility wrapper for Steam
+    - "org.winehq.Wine" # Compatibility layer for running Windows applications
+    - "org.winehq.Wine.DLLs.dxvk" # DXVK DLLs for Wine
+    - "org.winehq.Wine.mono" # Mono implementation for Wine
+    - "org.winehq.Wine.gecko" # Gecko engine for Wine
+
+  security_and_privacy:
+    - "com.bitwarden.desktop" # Password management solution
+
+  media_and_entertainment:
+    - "com.spotify.Client" # Music streaming service
+    - "io.mpv.Mpv" # Media player
+    - "org.gnome.Aisleriot" # Collection of solitaire card games
+    - "org.gnome.TwentyFortyEight" # 2048 puzzle game
+    - "me.timschneeberger.jdsp4linux" # Audio processing suite with a variety of effects
+
+  system_utilities:
+    - "com.github.tchx84.Flatseal" # Permissions manager for Flatpak applications
+
+pkgs_absent:
+  - "libreoffice-core"

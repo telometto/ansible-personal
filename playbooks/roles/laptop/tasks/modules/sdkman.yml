@@ -1,0 +1,10 @@
+---
+- name: "Checking if sdkman exists"
+  stat:
+    path: "/home/{{ ansible_user_id }}/.sdkman"
+    get_checksum: false
+  register: "p"
+
+- name: "Installing sdkman"
+  shell: "curl -s 'https://get.sdkman.io' | bash"
+  when: p.stat.exists == False

@@ -1,0 +1,4 @@
+---
+- name: "Break for good measure... "
+  pause:
+    minutes: 5

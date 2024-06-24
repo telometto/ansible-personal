@@ -1,0 +1,50 @@
+---
+# second task
+- name: "Application Installation"
+  block:
+    - import_tasks: "modules/pkgs_repo.yml"
+      register: lsresult
+      until: lsresult is not failed
+      retries: 3
+      delay: 10
+      become: true
+      ignore_errors: true
+
+    - import_tasks: "modules/pkgs_flatpak.yml"
+      register: lsresult
+      until: lsresult is not failed
+      retries: 3
+      delay: 10
+      become: true # Set to false if you're installing per-user only
+      ignore_errors: true
+
+    - name: "Enabling VS Code repo"
+      import_tasks: "modules/vscode.yml"
+
+    - name: "Logging in to container hubs"
+      import_tasks: "modules/containers.yml"
+      become: false
+
+    - name: "Importing sdkman"
+      import_tasks: "modules/sdkman.yml"
+      become: false
+
+    - name: "Checking if the system needs to be rebooted"
+      command: "needs-restarting -r"
+      register: result
+      become: false
+
+    - name: "Displaying results"
+      debug:
+        var: result.rc
+      become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+      when: result.rc == 1
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+      when: result.rc == 1
+      become: true

@@ -1,0 +1,16 @@
+---
+# approved
+- name: "Downloading JetBrains Toolbox"
+  ansible.builtin.get_url:
+    url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz"
+    dest: "/tmp"
+    checksum: sha256:https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz.sha256
+  become: false
+
+- name: "Extracting JetBrains Toolbox"
+  ansible.builtin.unarchive:
+    src: "/tmp/jetbrains-toolbox-1.27.3.14493.tar.gz"
+    dest: "/tmp"
+    creates: "/tmp/JetBrains-Toolbox"
+    remote_src: true
+  become: false
