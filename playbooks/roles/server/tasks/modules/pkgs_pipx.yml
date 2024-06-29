@@ -1,0 +1,8 @@
+---
+- name: "Installing pipx packages"
+  pipx:
+    state: "latest"
+    name: "{{ item }}"
+    install_deps: true
+    include_injected: true
+  with_items: "{{ pkgs_pipx.values() | flatten }}"

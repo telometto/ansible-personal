@@ -1,0 +1,7 @@
+---
+- name: "Rebooting machine"
+  reboot:
+    msg: "Rebooting... "
+    pre_reboot_delay: 60
+    post_reboot_delay: 60
+    test_command: "whoami"

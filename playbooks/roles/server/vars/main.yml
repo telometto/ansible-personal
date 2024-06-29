@@ -1,0 +1,87 @@
+---
+# vars file for desktop
+pkgs_apt:
+  development:
+    - "apparmor"
+    - "apparmor-profiles"
+    - "apparmor-utils"
+    - "bash-completion"
+    - "bat"
+    - "bpytop"
+    - "build-essential"
+    - "cockpit"
+    - "cockpit-bridge"
+    - "cockpit-doc"
+    - "cockpit-machines"
+    - "cockpit-networkmanager"
+    - "cockpit-packagekit"
+    - "cockpit-pcp"
+    - "cockpit-podman"
+    - "cockpit-sosreport"
+    - "cockpit-storaged"
+    - "cockpit-system"
+    - "cockpit-tests"
+    - "cockpit-ws"
+    - "curl"
+    - "dkms"
+    - "exa"
+    - "git"
+    - "intel-microcode"
+    - "linux-headers-generic"
+    - "iptables"
+    - "lm-sensors"
+    - "micro"
+    - "neofetch"
+    - "net-tools"
+    - "nfs-common"
+    - "nftables"
+    - "p7zip-full"
+    - "pipx"
+    #- "podman"
+    #- "podman-docker"
+    #- "podman-toolbox"
+    - "python3-pip"
+    - "realmd"
+    - "rng-tools5"
+    - "rsync"
+    - "sanoid"
+    - "software-properties-common"
+    - "tmux"
+    - "tree"
+    - "tuned"
+    - "ubuntu-advantage-tools"
+    - "update-notifier-common"
+    - "ufw"
+    - "unattended-upgrades"
+    - "wireguard"
+    - "wireguard-tools"
+    - "xclip"
+    - "zfs-initramfs"
+    - "zfsutils-linux"
+    - "zsh"
+
+pkgs_flatpak:
+  communication_apps:
+    - "ch.protonmail.protonmail-bridge" # Email bridge for ProtonMail
+    #- "<some other package>"
+
+  productivity_tools:
+    - "com.github.tchx84.Flatseal" # Permissions manager for Flatpak
+    #- "<some other package>"
+
+  your_other_categories:
+    #- "<some other package>"
+
+pkgs_snap:
+  k8s:
+    # - "kubeadm"
+    - "microk8s"
+
+pkgs_pipx:
+  utilities:
+    - "ansible"
+    - "podman"
+    - "podman-compose"
+
+pkgs_absent:
+  - "libreoffice-core"

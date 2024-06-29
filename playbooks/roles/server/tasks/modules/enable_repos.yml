@@ -1,0 +1,6 @@
+---
+- name: "Enable repos"
+  apt_repository:
+    repo: "{{ item }}"
+    state: "present"
+  with_items: "{{ repos }}"

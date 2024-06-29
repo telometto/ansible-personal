@@ -1,0 +1,32 @@
+---
+- name: "Enabling IPv6"
+  lineinfile:
+    path: "/etc/default/ufw"
+    regexp: "^IPV6="
+    line: "IPV6=yes"
+
+- name: "Denying incoming traffic"
+  community.general.ufw:
+    direction: "in"
+    rule: "deny"
+
+- name: "Allowing outgoing traffic"
+  community.general.ufw:
+    direction: "out"
+    rule: "allow"
+
+- name: "Allowing OpenSSH traffic"
+  community.general.ufw:
+    name: "OpenSSH"
+    rule: "deny"
+
+- name: "Allowing and rate-limiting SSH"
+  community.general.ufw:
+    port: "ssh"
+    rule: "limit"
+    proto: "any"
+
+- name: "Enabling ufw"
+  community.general.ufw:
+    state: "enabled"
+    logging: "on"

@@ -1,0 +1,38 @@
+---
+# pre-task
+- name: "Set up repos and update packages"
+  block:
+    - name: "Ensuring that SSH is enabled"
+      systemd:
+        name: "ssh"
+        enabled: true
+      become: true
+
+    - import_tasks: "modules/enable_repos.yml"
+      become: true
+
+    - import_tasks: "modules/update_system.yml"
+      register: package_out
+      failed_when: package_out is failed
+      become: true
+
+    ## This needs to be adapted to Ubuntu systems
+    #- name: "Checking if the system needs to be rebooted"
+    #  command: "needs-restarting -r"
+    #  register: result
+    #  become: false
+    #
+    #- name: "Displaying results"
+    #  debug:
+    #    var: result.rc
+    #  become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+    #  when: result.rc == 1 # Commented until "needrestart" is implemented
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+    #  when: result.rc == 1 # Commented until "needrestart" is implemented
+      become: true

@@ -1,0 +1,42 @@
+---
+# main task
+- name: "System configuration"
+  block:
+    - import_tasks: "modules/pkgs_repo.yml"
+      become: true
+
+    - import_tasks: "modules/pkgs_snap.yml"
+      become: true
+
+    - import_tasks: "modules/ufw.yml"
+      become: true
+
+    ## Disabled for manual installation until global flags are implemented
+    #- import_tasks: "modules/pkgs_pipx.yml"
+    #  become: false
+
+    - import_tasks: "modules/update_system.yml"
+      register: package_out
+      failed_when: package_out is failed
+      become: true
+
+    ## This needs to be adapted to Ubuntu systems
+    #- name: "Checking if the system needs to be rebooted"
+    #  command: "needs-restarting -r"
+    #  register: result
+    #  become: false
+    #
+    #- name: "Displaying results"
+    #  debug:
+    #    var: result.rc
+    #  become: false
+
+    - name: "Pause"
+      import_tasks: "modules/pause.yml"
+    #  when: result.rc == 1 # Commented until "needrestart" is implemented
+      become: false
+
+    - name: "Reboot"
+      import_tasks: "modules/reboot.yml"
+    #  when: result.rc == 1 # Commented until "needrestart" is implemented
+      become: true

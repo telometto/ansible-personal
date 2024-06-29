@@ -1,0 +1,7 @@
+---
+- name: "Installing APT packages"
+  snap:
+    state: "present"
+    name: "{{ item }}"
+    channel: "latest"
+  with_items: "{{ pkgs_snap.values() | flatten }}"
