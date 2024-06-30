@@ -1,3 +1,4 @@
+# Needs to be reviewed - not working as intended
 ---
 - name: "Enabling IPv6"
   lineinfile:
@@ -18,7 +19,7 @@
 - name: "Allowing OpenSSH traffic"
   community.general.ufw:
     name: "OpenSSH"
-    rule: "deny"
+    rule: "allow"
 
 - name: "Allowing and rate-limiting SSH"
   community.general.ufw:
