@@ -1,0 +1,26 @@
+---
+- name: "Stopping microk8s"
+  community.general.snap:
+    name: "microk8s"
+    state: "disabled"
+
+- name: "Removing old containerd dir"
+  file:
+    path: "/var/snap/microk8s/common/var/lib/containerd"
+    state: "absent"
+#
+#- name: "Destroying old containerd dataset"
+#  community.general.zfs:
+#    name: "tank/containerd"
+#    state: "absent"
+#
+- name: "Configuring containerd to use ZFS"
+  lineinfile:
+    path: "/var/snap/microk8s/current/args/containerd-template.toml"
+    regexp: '^snapshotter = \${SNAPSHOTTER}$'
+    line: "snapshotter = zfs"
+
+- name: "Reenabling microk8s"
+  community.general.snap:
+    name: "microk8s"
+    state: "enabled"
