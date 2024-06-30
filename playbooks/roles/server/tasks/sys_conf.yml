@@ -8,10 +8,10 @@
     - import_tasks: "modules/pkgs_snap.yml"
       become: true
 
-    - import_tasks: "modules/ufw.yml"
-      become: true
+    ## Disabled for now - needs to be tweaked       
+    #- import_tasks: "modules/ufw.yml"
+    #  become: true
 
-    ## Disabled for manual installation until global flags are implemented
     #- import_tasks: "modules/pkgs_pipx.yml"
     #  become: false
 
