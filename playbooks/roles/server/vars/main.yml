@@ -24,14 +24,13 @@ pkgs_apt:
     - "cockpit-ws"
     - "curl"
     - "dkms"
-    - "exa"
+    - "eza"
     - "git"
     - "intel-microcode"
     - "linux-headers-generic"
     - "iptables"
     - "lm-sensors"
     - "micro"
-    - "neofetch"
     - "net-tools"
     - "nfs-common"
     - "nftables"
@@ -80,8 +79,8 @@ pkgs_snap:
 pkgs_pipx:
   utilities:
     - "ansible"
-    - "podman"
-    - "podman-compose"
+    #- "podman"
+    #- "podman-compose"
 
 pkgs_absent:
   - "libreoffice-core"
